@@ -130,7 +130,7 @@ export default function EventsSection() {
             return (
               <motion.div
                 key={event.name}
-                className={`card-base glass-effect border-2 border-${event.element}-500/30 hover:border-${event.element}-500/60 group cursor-pointer`}
+                className={`card-base-static glass-effect border-2 border-${event.element}-500/30 hover:border-${event.element}-500/60`}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "50px" }}
@@ -154,7 +154,7 @@ export default function EventsSection() {
                 </div>
 
                 {/* Event Name */}
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-white/60 transition-all">
+                <h3 className="text-xl font-bold text-white mb-2">
                   {event.name}
                 </h3>
 
@@ -184,17 +184,18 @@ export default function EventsSection() {
                 </div>
 
                 {/* Register Button */}
-                <motion.button
-                  onClick={() => handleEventClick(event)}
-                  className="w-full py-3 rounded-lg font-semibold text-white transition-all duration-300 mt-2"
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleEventClick(event);
+                  }}
+                  className="w-full py-3 rounded-lg font-semibold text-white transition-colors duration-200 mt-2 active:opacity-90 touch-manipulation"
                   style={{
                     background: elementColor.gradientStyle,
                   }}
-                  whileHover={{ scale: 1.02, boxShadow: '0 10px 30px rgba(0,0,0,0.3)' }}
-                  whileTap={{ scale: 0.98 }}
                 >
                   Register Now
-                </motion.button>
+                </button>
               </motion.div>
             );
           })}

@@ -55,20 +55,25 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
 
           {/* Dialog */}
           <motion.div
-            className="fixed inset-0 z-[9999] flex items-center justify-center p-2 sm:p-4 overflow-y-auto"
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-2 sm:p-4 overflow-y-auto touch-manipulation"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            onClick={(e) => {
+              if (e.target === e.currentTarget) {
+                onClose();
+              }
+            }}
           >
             <motion.div
-              className="glass-effect-strong rounded-xl sm:rounded-2xl max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto border-2 relative"
+              className="glass-effect-strong rounded-xl sm:rounded-2xl max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto border-2 relative touch-manipulation"
               style={{
                 borderColor: `${elementColor.primary}66`,
               } as React.CSSProperties}
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
@@ -87,19 +92,9 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
                 }}
               >
                 <div className="flex items-start gap-3 sm:gap-4">
-                  <motion.div
-                    className="text-3xl sm:text-5xl"
-                    animate={{
-                      rotate: [0, 10, -10, 0],
-                      scale: [1, 1.1, 1],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                    }}
-                  >
+                  <div className="text-3xl sm:text-5xl">
                     {elementIcon}
-                  </motion.div>
+                  </div>
                   <div className="flex-1 min-w-0">
                     <h2 className="text-xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">{event.name}</h2>
                     <p className={`text-sm sm:text-lg font-medium italic mb-2 truncate`} style={{ color: elementColor.primary }}>

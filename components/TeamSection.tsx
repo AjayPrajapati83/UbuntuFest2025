@@ -161,10 +161,9 @@ export default function TeamSection() {
                   <motion.div
                     key={`${category.title}-${memberIndex}`}
                     className="group"
-                    initial={{ opacity: 0, scale: 0.8 }}
+                    initial={{ opacity: 1, scale: 1 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: memberIndex * 0.1, duration: 0.4 }}
                   >
                     {/* Card Container */}
                     <motion.div
