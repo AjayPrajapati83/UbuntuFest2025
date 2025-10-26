@@ -66,7 +66,7 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
             }}
           >
             <motion.div
-              className="glass-effect-strong rounded-xl sm:rounded-2xl max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto border-2 relative touch-manipulation"
+              className="glass-effect-strong rounded-xl sm:rounded-2xl max-w-2xl w-full max-h-[95vh] sm:max-h-[75vh] overflow-y-auto border-2 relative touch-manipulation"
               style={{
                 borderColor: `${elementColor.primary}66`,
               } as React.CSSProperties}
