@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --air: #87CEEB;
+  --water: #2196F3;
+  --earth: #795548;
+  --fire: #FF5722;
+  --space: #1A1A2E;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  @apply bg-space-950 text-white overflow-x-hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Mobile performance optimizations */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Hardware acceleration for animations */
+@media (max-width: 768px) {
+  * {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}
+
+/* Reduce motion for accessibility and performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-space-900;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #87CEEB, #2196F3, #FF5722);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2196F3, #FF5722, #87CEEB);
+}
+
+/* Glass Effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-effect-strong {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Elemental Text Effects */
+.elemental-text-shadow {
+  text-shadow: 
+    0 0 10px currentColor,
+    0 0 20px currentColor,
+    0 0 30px currentColor;
+}
+
+.fire-text {
+  background: linear-gradient(45deg, #FF4500, #FF5722, #FF6F00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fire-shimmer 3s ease-in-out infinite;
+}
+
+@keyframes fire-shimmer {
+  0%, 100% { filter: brightness(1) hue-rotate(0deg); }
+  50% { filter: brightness(1.2) hue-rotate(10deg); }
+}
+
+.water-text {
+  background: linear-gradient(45deg, #2196F3, #03A9F4, #00BCD4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.earth-text {
+  background: linear-gradient(45deg, #8B4513, #795548, #A0826D);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.air-text {
+  background: linear-gradient(45deg, #87CEEB, #B3E5FC, #E0F7FA);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.space-text {
+  background: linear-gradient(45deg, #1A1A2E, #3949AB, #7986CB);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(90deg, #87CEEB, #2196F3, #FF5722, #795548, #9370DB);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 5s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+}
+
+/* Particle Effects */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Smooth Transitions */
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Section Padding */
+.section-padding {
+  @apply py-20 px-4 md:px-8 lg:px-16;
+}
+
+/* Container */
+.container-custom {
+  @apply max-w-7xl mx-auto;
+}
+
+/* Button Styles */
+.btn-primary {
+  @apply px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95;
+}
+
+.btn-air {
+  @apply bg-gradient-to-r from-air-400 to-air-600 hover:from-air-500 hover:to-air-700 text-white shadow-lg hover:shadow-air-500/50;
+}
+
+.btn-water {
+  @apply bg-gradient-to-r from-water-400 to-water-600 hover:from-water-500 hover:to-water-700 text-white shadow-lg hover:shadow-water-500/50;
+}
+
+.btn-fire {
+  @apply bg-gradient-to-r from-fire-400 to-fire-600 hover:from-fire-500 hover:to-fire-700 text-white shadow-lg hover:shadow-fire-500/50;
+}
+
+.btn-earth {
+  @apply bg-gradient-to-r from-earth-400 to-earth-600 hover:from-earth-500 hover:to-earth-700 text-white shadow-lg hover:shadow-earth-500/50;
+}
+
+.btn-space {
+  @apply bg-gradient-to-r from-space-600 to-space-800 hover:from-space-700 hover:to-space-900 text-white shadow-lg hover:shadow-space-500/50;
+}
+
+/* Card Styles */
+.card-base {
+  @apply rounded-xl p-6 transition-all duration-300 transform hover:-translate-y-2;
+}
+
+/* Loading Animation */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* Responsive Typography */
+@layer utilities {
+  .text-responsive-xs { @apply text-xs sm:text-sm; }
+  .text-responsive-sm { @apply text-sm sm:text-base; }
+  .text-responsive-base { @apply text-base sm:text-lg; }
+  .text-responsive-lg { @apply text-lg sm:text-xl md:text-2xl; }
+  .text-responsive-xl { @apply text-xl sm:text-2xl md:text-3xl; }
+  .text-responsive-2xl { @apply text-2xl sm:text-3xl md:text-4xl; }
+  .text-responsive-3xl { @apply text-3xl sm:text-4xl md:text-5xl; }
+  .text-responsive-4xl { @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl; }
+}
