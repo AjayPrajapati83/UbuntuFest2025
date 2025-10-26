@@ -26,7 +26,7 @@ export default function ScheduleSection() {
   ];
 
   return (
-    <section id="schedule" className="section-padding relative z-10">
+    <section id="schedule" className="section-padding relative">
       <div className="container-custom">
         {/* Section Header */}
         <motion.div
@@ -258,7 +258,11 @@ export default function ScheduleSection() {
                     className="glass-effect rounded-xl p-4 border transition-all duration-300 group"
                     style={{
                       borderColor: 'rgba(121, 85, 72, 0.2)',
-                    }}
+                      willChange: 'auto',
+                      transform: 'translateZ(0)',
+                      WebkitBackfaceVisibility: 'hidden',
+                      backfaceVisibility: 'hidden',
+                    } as React.CSSProperties}
                   >
                     <div className="flex items-start gap-3 mb-3">
                       <div className="text-2xl">

@@ -42,18 +42,18 @@ export default function EventsSection() {
   });
 
   return (
-    <section id="events" className="section-padding relative z-10">
+    <section id="events" className="section-padding relative">
       <div className="container-custom">
         {/* Section Header */}
         <motion.div
-          className="text-center mb-16 relative z-20"
+          className="text-center mb-16 relative"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
           <motion.h2
-            className="text-3xl sm:text-5xl md:text-6xl font-bold mb-4 relative z-20"
+            className="text-3xl sm:text-5xl md:text-6xl font-bold mb-4 relative"
             style={{
               backgroundSize: '200% auto',
             } as React.CSSProperties}
@@ -121,9 +121,7 @@ export default function EventsSection() {
         </motion.div>
 
         {/* Events Grid */}
-        <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredEvents.map((event, index) => {
             const elementColor = getElementColor(event.element);
             const elementIcon = getElementIcon(event.element);
@@ -134,7 +132,9 @@ export default function EventsSection() {
                 className="card-base-static glass-effect border-2 transition-all"
                 style={{
                   borderColor: `${elementColor.primary}33`,
-                }}
+                  willChange: 'auto',
+                  transform: 'translateZ(0)',
+                } as React.CSSProperties}
               >
                 {/* Event Header */}
                 <div className="flex items-start justify-between mb-4">
@@ -198,7 +198,9 @@ export default function EventsSection() {
                   className="w-full py-3 rounded-lg font-semibold text-white transition-colors duration-200 mt-2 active:opacity-90 touch-manipulation"
                   style={{
                     background: elementColor.gradientStyle,
-                  }}
+                    WebkitTapHighlightColor: 'transparent',
+                    cursor: 'pointer',
+                  } as React.CSSProperties}
                 >
                   Register Now
                 </button>

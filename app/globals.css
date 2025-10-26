@@ -26,6 +26,24 @@ body {
   /* Mobile performance optimizations */
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+  /* iOS Safari specific fixes */
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  /* Prevent pull-to-refresh on mobile */
+  overscroll-behavior-y: contain;
+}
+
+/* iOS viewport height fix */
+html {
+  height: -webkit-fill-available;
+}
+
+/* Safe area support for notched devices */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
 }
 
 /* Hardware acceleration for animations */
@@ -35,6 +53,11 @@ body {
     transform: translateZ(0);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+  }
+  
+  /* Improve touch scrolling on iOS */
+  * {
+    -webkit-overflow-scrolling: touch;
   }
 }
 
@@ -47,6 +70,14 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Optimize animations on mobile */
+@media (max-width: 768px) {
+  * {
+    animation-duration: 0.3s !important;
+    transition-duration: 0.2s !important;
   }
 }
 
@@ -68,19 +99,41 @@ body {
   background: linear-gradient(180deg, #2196F3, #FF5722, #87CEEB);
 }
 
-/* Glass Effect */
+/* Glass Effect with fallbacks for better mobile support */
 .glass-effect {
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+  .glass-effect {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+
+@supports not (backdrop-filter: blur(10px)) and not (-webkit-backdrop-filter: blur(10px)) {
+  .glass-effect {
+    background: rgba(26, 26, 46, 0.85);
+  }
 }
 
 .glass-effect-strong {
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
+  .glass-effect-strong {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+}
+
+@supports not (backdrop-filter: blur(20px)) and not (-webkit-backdrop-filter: blur(20px)) {
+  .glass-effect-strong {
+    background: rgba(26, 26, 46, 0.95);
+  }
 }
 
 /* Elemental Text Effects */
@@ -202,6 +255,24 @@ body {
 /* Static card for better mobile performance */
 .card-base-static {
   @apply rounded-xl p-6 transition-colors duration-200;
+  /* Optimize rendering on mobile */
+  contain: layout style paint;
+}
+
+/* Touch-friendly elements */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Prevent text selection on interactive elements */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /* Loading Animation */
@@ -224,4 +295,30 @@ body {
   .text-responsive-2xl { @apply text-2xl sm:text-3xl md:text-4xl; }
   .text-responsive-3xl { @apply text-3xl sm:text-4xl md:text-5xl; }
   .text-responsive-4xl { @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl; }
+}
+
+/* Mobile-specific fixes */
+@media (max-width: 640px) {
+  /* Prevent zoom on input focus in iOS */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+  
+  /* Better button sizing for touch */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Fix for iOS Safari 100vh issue */
+@supports (-webkit-touch-callout: none) {
+  .min-h-screen {
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* Isolate stacking contexts for modals */
+.isolate {
+  isolation: isolate;
 }
