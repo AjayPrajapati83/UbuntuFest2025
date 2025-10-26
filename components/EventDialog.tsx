@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
 import { X } from 'lucide-react';
 import { Event } from '@/data/events';
 import { getElementColor, getElementIcon } from '@/lib/utils';
@@ -41,39 +41,29 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
   const outHouseFormLink = '#'; // TODO: Add external student form link
 
   return (
-    <AnimatePresence>
+    <>
       {isOpen && (
         <>
           {/* Backdrop */}
-          <motion.div
+          <div
             className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9998]"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
             onClick={onClose}
           />
 
           {/* Dialog */}
-          <motion.div
+          <div
             className="fixed inset-0 z-[9999] flex items-center justify-center p-2 sm:p-4 overflow-y-auto touch-manipulation"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
             onClick={(e) => {
               if (e.target === e.currentTarget) {
                 onClose();
               }
             }}
           >
-            <motion.div
+            <div
               className="glass-effect-strong rounded-xl sm:rounded-2xl max-w-2xl w-full max-h-[95vh] sm:max-h-[75vh] overflow-y-auto border-2 relative touch-manipulation"
               style={{
                 borderColor: `${elementColor.primary}66`,
               } as React.CSSProperties}
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
@@ -182,47 +172,41 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
 
               {/* Footer - Registration Buttons */}
               <div className="p-4 sm:p-6 border-t border-white/10 space-y-2 sm:space-y-3">
-                <motion.a
+                <a
                   href={inHouseFormLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg font-semibold text-sm sm:text-base text-center text-white transition-all"
+                  className="block w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg font-semibold text-sm sm:text-base text-center text-white transition-all hover:opacity-90"
                   style={{
                     background: `linear-gradient(135deg, ${elementColor.primary}, ${elementColor.secondary})`,
                   } as React.CSSProperties}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
                 >
                   🎓 Register In-House (Patkar College)
-                </motion.a>
+                </a>
 
-                <motion.a
+                <a
                   href={outHouseFormLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg font-semibold text-sm sm:text-base text-center text-white border-2 glass-effect transition-all"
+                  className="block w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg font-semibold text-sm sm:text-base text-center text-white border-2 glass-effect transition-all hover:opacity-90"
                   style={{
                     borderColor: elementColor.primary,
                   } as React.CSSProperties}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
                 >
                   🌍 Register Out-House (External)
-                </motion.a>
+                </a>
 
-                <motion.button
+                <button
                   onClick={onClose}
                   className="w-full py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg font-medium text-sm sm:text-base text-center text-white/70 hover:text-white glass-effect border border-white/10 hover:border-white/30 transition-all"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
                 >
                   Close
-                </motion.button>
+                </button>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </>
       )}
-    </AnimatePresence>
+    </>
   );
 }

@@ -119,22 +119,17 @@ export default function EventsSection() {
         </motion.div>
 
         {/* Events Grid */}
-        <motion.div
+        <div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          layout
         >
           {filteredEvents.map((event, index) => {
             const elementColor = getElementColor(event.element);
             const elementIcon = getElementIcon(event.element);
 
             return (
-              <motion.div
+              <div
                 key={event.name}
                 className={`card-base-static glass-effect border-2 border-${event.element}-500/30 hover:border-${event.element}-500/60`}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, margin: "50px" }}
-                transition={{ duration: 0.3 }}
               >
                 {/* Event Header */}
                 <div className="flex items-start justify-between mb-4">
@@ -196,10 +191,10 @@ export default function EventsSection() {
                 >
                   Register Now
                 </button>
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
 
         {/* No Results */}
         {filteredEvents.length === 0 && (
