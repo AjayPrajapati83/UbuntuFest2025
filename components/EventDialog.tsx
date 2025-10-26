@@ -15,6 +15,7 @@ interface EventDialogProps {
 export default function EventDialog({ event, isOpen, onClose }: EventDialogProps) {
   // Lock body scroll when dialog is open
   useEffect(() => {
+    console.log('EventDialog - isOpen:', isOpen, 'event:', event?.name);
     if (isOpen) {
       document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
@@ -29,9 +30,14 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
       document.body.style.position = '';
       document.body.style.width = '';
     };
-  }, [isOpen]);
+  }, [isOpen, event]);
 
-  if (!event) return null;
+  console.log('EventDialog render - isOpen:', isOpen, 'hasEvent:', !!event);
+  
+  if (!event) {
+    console.log('EventDialog - No event, returning null');
+    return null;
+  }
 
   const elementColor = getElementColor(event.element);
   const elementIcon = getElementIcon(event.element);

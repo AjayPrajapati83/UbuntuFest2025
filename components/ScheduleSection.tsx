@@ -253,13 +253,12 @@ export default function ScheduleSection() {
               {/* Events List */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-0 md:pl-8">
                 {schedule.events.map((event, eventIndex) => (
-                  <motion.div
+                  <div
                     key={event.name}
-                    className="glass-effect rounded-xl p-4 border border-earth-500/20 hover:border-earth-500/40 transition-all duration-300 group hover:shadow-earth-500/20"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true, margin: "100px" }}
-                    transition={{ duration: 0.2 }}
+                    className="glass-effect rounded-xl p-4 border transition-all duration-300 group"
+                    style={{
+                      borderColor: 'rgba(121, 85, 72, 0.2)',
+                    }}
                   >
                     <div className="flex items-start gap-3 mb-3">
                       <div className="text-2xl">
@@ -288,12 +287,18 @@ export default function ScheduleSection() {
                       </div>
                       <div className="flex items-center justify-between pt-2 border-t border-white/10">
                         <span className="text-earth-300 font-semibold">{event.price}</span>
-                        <span className={`text-xs px-2 py-1 rounded-full bg-${event.element}-500/20 text-${event.element}-300`}>
+                        <span 
+                          className="text-xs px-2 py-1 rounded-full"
+                          style={{
+                            backgroundColor: 'rgba(121, 85, 72, 0.2)',
+                            color: '#A0826D',
+                          }}
+                        >
                           {event.eventType}
                         </span>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </motion.div>

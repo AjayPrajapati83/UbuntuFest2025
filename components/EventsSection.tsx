@@ -14,8 +14,10 @@ export default function EventsSection() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const handleEventClick = (event: Event) => {
+    console.log('Event clicked:', event.name);
     setSelectedEvent(event);
     setIsDialogOpen(true);
+    console.log('Dialog should be open now');
   };
 
   const handleCloseDialog = () => {
@@ -129,7 +131,10 @@ export default function EventsSection() {
             return (
               <div
                 key={event.name}
-                className={`card-base-static glass-effect border-2 border-${event.element}-500/30 hover:border-${event.element}-500/60`}
+                className="card-base-static glass-effect border-2 transition-all"
+                style={{
+                  borderColor: `${elementColor.primary}33`,
+                }}
               >
                 {/* Event Header */}
                 <div className="flex items-start justify-between mb-4">
@@ -138,7 +143,13 @@ export default function EventsSection() {
                       {elementIcon}
                     </span>
                     <div>
-                      <span className={`text-xs font-semibold px-2 py-1 rounded-full bg-${event.element}-500/20 text-${event.element}-300`}>
+                      <span 
+                        className="text-xs font-semibold px-2 py-1 rounded-full"
+                        style={{
+                          backgroundColor: `${elementColor.primary}33`,
+                          color: elementColor.primary,
+                        }}
+                      >
                         {event.element.toUpperCase()}
                       </span>
                     </div>
@@ -154,7 +165,7 @@ export default function EventsSection() {
                 </h3>
 
                 {/* Themed Name */}
-                <p className={`text-sm font-medium text-${event.element}-300 mb-3 italic`}>
+                <p className="text-sm font-medium mb-3 italic" style={{ color: elementColor.primary }}>
                   {event.themedName}
                 </p>
 
