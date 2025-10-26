@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { Event } from '@/data/events';
 import { getElementColor, getElementIcon } from '@/lib/utils';
+import { useEffect } from 'react';
 
 interface EventDialogProps {
   event: Event | null;
@@ -12,6 +13,24 @@ interface EventDialogProps {
 }
 
 export default function EventDialog({ event, isOpen, onClose }: EventDialogProps) {
+  // Lock body scroll when dialog is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    };
+  }, [isOpen]);
+
   if (!event) return null;
 
   const elementColor = getElementColor(event.element);
@@ -27,7 +46,7 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
         <>
           {/* Backdrop */}
           <motion.div
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9998]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -36,7 +55,7 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
 
           {/* Dialog */}
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4"
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-2 sm:p-4 overflow-y-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

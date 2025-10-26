@@ -132,20 +132,12 @@ export default function ScheduleSection() {
                   boxShadow: '0 20px 40px rgba(121, 85, 72, 0.3)',
                 }}
               >
-                {/* Animated background pattern */}
-                <motion.div
+                {/* Static background pattern */}
+                <div
                   className="absolute inset-0 opacity-10"
                   style={{
                     backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)',
                     backgroundSize: '20px 20px',
-                  }}
-                  animate={{
-                    backgroundPosition: ['0px 0px', '20px 20px'],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: 'linear',
                   }}
                 />
                 
@@ -153,27 +145,15 @@ export default function ScheduleSection() {
                   {/* Mobile Layout - Vertical Stack */}
                   <div className="flex flex-col items-center gap-4 sm:hidden">
                     <div className="flex items-center gap-4 w-full">
-                      <motion.div
+                      <div
                         className="w-20 h-20 rounded-full flex items-center justify-center text-4xl relative flex-shrink-0"
                         style={{
                           background: 'linear-gradient(135deg, rgba(139, 69, 19, 0.4), rgba(121, 85, 72, 0.6))',
                           boxShadow: '0 8px 32px rgba(121, 85, 72, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)',
                         }}
-                        animate={{
-                          rotate: [0, 360],
-                          boxShadow: [
-                            '0 8px 32px rgba(121, 85, 72, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)',
-                            '0 8px 32px rgba(139, 69, 19, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.2)',
-                            '0 8px 32px rgba(121, 85, 72, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)',
-                          ],
-                        }}
-                        transition={{
-                          rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-                          boxShadow: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-                        }}
                       >
                         🌍
-                      </motion.div>
+                      </div>
                       <div className="flex-1 text-left">
                         <motion.h3 
                           className="text-3xl font-bold text-white mb-1"
@@ -218,27 +198,15 @@ export default function ScheduleSection() {
                   {/* Desktop Layout - Horizontal */}
                   <div className="hidden sm:flex items-center justify-between">
                     <div className="flex items-center gap-6">
-                      <motion.div
-                        className="w-24 h-24 rounded-full flex items-center justify-center text-5xl relative"
+                      <div
+                        className="w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center text-4xl sm:text-5xl relative"
                         style={{
                           background: 'linear-gradient(135deg, rgba(139, 69, 19, 0.4), rgba(121, 85, 72, 0.6))',
                           boxShadow: '0 8px 32px rgba(121, 85, 72, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)',
                         }}
-                        animate={{
-                          rotate: [0, 360],
-                          boxShadow: [
-                            '0 8px 32px rgba(121, 85, 72, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)',
-                            '0 8px 32px rgba(139, 69, 19, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.2)',
-                            '0 8px 32px rgba(121, 85, 72, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)',
-                          ],
-                        }}
-                        transition={{
-                          rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-                          boxShadow: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-                        }}
                       >
                         🌍
-                      </motion.div>
+                      </div>
                       <div className="text-left">
                         <motion.h3 
                           className="text-4xl font-bold text-white mb-1"
@@ -288,32 +256,19 @@ export default function ScheduleSection() {
                   <motion.div
                     key={event.name}
                     className="glass-effect rounded-xl p-4 border border-earth-500/20 hover:border-earth-500/40 transition-all duration-300 group hover:shadow-earth-500/20"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: eventIndex * 0.05 }}
-                    whileHover={{
-                      y: -5,
-                    }}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, margin: "100px" }}
+                    transition={{ duration: 0.2 }}
                   >
                     <div className="flex items-start gap-3 mb-3">
-                      <motion.div
-                        className="text-2xl"
-                        animate={{
-                          rotate: [0, 10, -10, 0],
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                          delay: eventIndex * 0.1,
-                        }}
-                      >
+                      <div className="text-2xl">
                         {event.element === 'air' && '💨'}
                         {event.element === 'water' && '💧'}
                         {event.element === 'earth' && '🌱'}
                         {event.element === 'fire' && '🔥'}
                         {event.element === 'space' && '🚀'}
-                      </motion.div>
+                      </div>
                       <div className="flex-1">
                         <h4 className="font-bold text-white group-hover:text-earth-300 transition-colors">
                           {event.name}

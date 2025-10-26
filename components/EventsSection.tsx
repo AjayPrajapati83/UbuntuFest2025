@@ -44,14 +44,14 @@ export default function EventsSection() {
       <div className="container-custom">
         {/* Section Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-16 relative z-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
           <motion.h2
-            className="text-3xl sm:text-5xl md:text-6xl font-bold mb-4"
+            className="text-3xl sm:text-5xl md:text-6xl font-bold mb-4 relative z-20"
             style={{
               backgroundSize: '200% auto',
             } as React.CSSProperties}
@@ -131,32 +131,17 @@ export default function EventsSection() {
               <motion.div
                 key={event.name}
                 className={`card-base glass-effect border-2 border-${event.element}-500/30 hover:border-${event.element}-500/60 group cursor-pointer`}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05, duration: 0.5 }}
-                whileHover={{
-                  y: -10,
-                }}
-                layout
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "50px" }}
+                transition={{ duration: 0.3 }}
               >
                 {/* Event Header */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-2">
-                    <motion.span
-                      className="text-3xl"
-                      animate={{
-                        rotate: [0, 10, -10, 0],
-                        scale: [1, 1.1, 1],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        delay: index * 0.2,
-                      }}
-                    >
+                    <span className="text-3xl">
                       {elementIcon}
-                    </motion.span>
+                    </span>
                     <div>
                       <span className={`text-xs font-semibold px-2 py-1 rounded-full bg-${event.element}-500/20 text-${event.element}-300`}>
                         {event.element.toUpperCase()}
