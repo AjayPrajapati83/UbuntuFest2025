@@ -249,7 +249,7 @@ html {
 
 /* Card Styles */
 .card-base {
-  @apply rounded-xl p-6 transition-all duration-300 transform hover:-translate-y-2;
+  @apply rounded-xl p-6 transition-colors duration-200;
 }
 
 /* Static card for better mobile performance */

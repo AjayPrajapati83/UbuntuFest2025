@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { Event } from '@/data/events';
 import { getElementColor, getElementIcon } from '@/lib/utils';
@@ -14,6 +15,12 @@ interface EventDialogProps {
 export default function EventDialog({ event, isOpen, onClose }: EventDialogProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const scrollPositionRef = useRef(0);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
 
   // Enhanced body scroll lock for mobile
   useEffect(() => {
@@ -55,7 +62,7 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
     }
   }, [isOpen]);
   
-  if (!event || !isOpen) {
+  if (!mounted || !event || !isOpen) {
     return null;
   }
 
@@ -66,9 +73,9 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
   const inHouseFormLink = '#'; // TODO: Add Patkar College student form link
   const outHouseFormLink = '#'; // TODO: Add external student form link
 
-  return (
+  const dialogContent = (
     <div
-      className="fixed inset-0 z-[99999]"
+      className="fixed inset-0 z-[9999]"
       style={{
         position: 'fixed',
         top: 0,
@@ -288,4 +295,6 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
       </div>
     </div>
   );
+
+  return createPortal(dialogContent, document.body);
 }

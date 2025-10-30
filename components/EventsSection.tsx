@@ -78,7 +78,7 @@ export default function EventsSection() {
           transition={{ delay: 0.2 }}
         >
           {elementFilters.map((filter) => (
-            <motion.button
+            <button
               key={filter.value}
               onClick={() => setSelectedElement(filter.value)}
               className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
@@ -86,12 +86,10 @@ export default function EventsSection() {
                   ? 'bg-gradient-to-r from-water-500 to-water-600 text-white shadow-lg shadow-water-500/30'
                   : 'glass-effect text-white/70 hover:text-white'
               }`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
               <span className="mr-2">{filter.icon}</span>
               {filter.name}
-            </motion.button>
+            </button>
           ))}
         </motion.div>
 
@@ -104,7 +102,7 @@ export default function EventsSection() {
           transition={{ delay: 0.3 }}
         >
           {categories.map((category) => (
-            <motion.button
+            <button
               key={category}
               onClick={() => setSelectedCategory(category)}
               className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
@@ -112,11 +110,9 @@ export default function EventsSection() {
                   ? 'bg-white/20 text-white border-2 border-white/40'
                   : 'glass-effect text-white/60 hover:text-white border border-white/10'
               }`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
               {category}
-            </motion.button>
+            </button>
           ))}
         </motion.div>
 
@@ -127,16 +123,12 @@ export default function EventsSection() {
             const elementIcon = getElementIcon(event.element);
 
             return (
-              <motion.div
+              <div
                 key={event.name}
                 className="card-base-static glass-effect border-2 transition-all"
                 style={{
                   borderColor: `${elementColor.primary}33`,
                 } as React.CSSProperties}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
               >
                 {/* Event Header */}
                 <div className="flex items-start justify-between mb-4">
@@ -210,7 +202,7 @@ export default function EventsSection() {
                 >
                   Register Now
                 </button>
-              </motion.div>
+              </div>
             );
           })}
         </div>
