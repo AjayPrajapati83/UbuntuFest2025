@@ -44,31 +44,37 @@ export default function HeroSection() {
       <div className="text-center max-w-6xl mx-auto">
         {/* Floating Elemental Orbs - Reduced on Mobile */}
         {!isMobile && (
-        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
-          {elements.map((element, index) => (
-            <motion.div
-              key={element.name}
-              className={`absolute text-4xl md:text-6xl`}
-              style={{
-                left: `${15 + index * 18}%`,
-                top: `${30 + (index % 2) * 20}%`,
-                zIndex: 1,
-              } as React.CSSProperties}
-              animate={{
-                y: [0, -30, 0],
-                rotate: [0, 360],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: 5 + index,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: index * 0.5,
-              }}
-            >
-              {element.emoji}
-            </motion.div>
-          ))}
+        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: -1 }}>
+          {elements.map((element, index) => {
+            // Adjust positioning to avoid button overlap
+            const leftPositions = [10, 15, 85, 90, 50]; // Spread out more, avoid center buttons
+            const topPositions = [20, 65, 25, 70, 15]; // Varied vertical positions
+            
+            return (
+              <motion.div
+                key={element.name}
+                className={`absolute text-4xl md:text-6xl`}
+                style={{
+                  left: `${leftPositions[index]}%`,
+                  top: `${topPositions[index]}%`,
+                  zIndex: -1,
+                } as React.CSSProperties}
+                animate={{
+                  y: [0, -30, 0],
+                  rotate: [0, 360],
+                  scale: [1, 1.2, 1],
+                }}
+                transition={{
+                  duration: 5 + index,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: index * 0.5,
+                }}
+              >
+                {element.emoji}
+              </motion.div>
+            );
+          })}
         </div>
         )}
 
