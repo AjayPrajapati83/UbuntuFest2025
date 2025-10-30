@@ -44,7 +44,7 @@ export default function HeroSection() {
       <div className="text-center max-w-6xl mx-auto">
         {/* Floating Elemental Orbs - Reduced on Mobile */}
         {!isMobile && (
-        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: -1 }}>
+        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
           {elements.map((element, index) => (
             <motion.div
               key={element.name}
@@ -52,7 +52,7 @@ export default function HeroSection() {
               style={{
                 left: `${15 + index * 18}%`,
                 top: `${30 + (index % 2) * 20}%`,
-                zIndex: -1,
+                zIndex: 1,
               } as React.CSSProperties}
               animate={{
                 y: [0, -30, 0],
