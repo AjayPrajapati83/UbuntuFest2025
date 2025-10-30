@@ -106,10 +106,12 @@ export default function Navigation() {
       </div>
 
       {/* Mobile Menu */}
+      {isOpen && (
       <motion.div
-        className={`md:hidden overflow-hidden ${isOpen ? 'block' : 'hidden'}`}
+        className="md:hidden overflow-hidden"
         initial={{ height: 0, opacity: 0 }}
-        animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
+        animate={{ height: 'auto', opacity: 1 }}
+        exit={{ height: 0, opacity: 0 }}
         transition={{ duration: 0.3 }}
       >
         <div className="glass-effect-strong border-t border-white/10">
@@ -130,6 +132,7 @@ export default function Navigation() {
           </div>
         </div>
       </motion.div>
+      )}
     </motion.nav>
   );
 }

@@ -112,24 +112,16 @@ export default function ScheduleSection() {
         {/* Schedule Timeline */}
         <div className="space-y-12 relative">
           {scheduleData.map((schedule, dayIndex) => (
-            <motion.div
+            <div
               key={schedule.day}
               className="relative"
-              initial={{ opacity: 0, x: dayIndex % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: dayIndex * 0.2 }}
             >
               {/* Day Header */}
-              <motion.div
+              <div
                 className="relative overflow-hidden rounded-2xl p-6 sm:p-8 mb-6 border-2 border-earth-500/40 shadow-2xl"
                 style={{
                   background: 'linear-gradient(135deg, rgba(121, 85, 72, 0.3), rgba(93, 64, 55, 0.4))',
                   backdropFilter: 'blur(20px)',
-                }}
-                whileHover={{
-                  scale: 1.02,
-                  boxShadow: '0 20px 40px rgba(121, 85, 72, 0.3)',
                 }}
               >
                 {/* Static background pattern */}
@@ -218,7 +210,7 @@ export default function ScheduleSection() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Events List */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-0 md:pl-8">
@@ -271,7 +263,7 @@ export default function ScheduleSection() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 

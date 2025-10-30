@@ -73,9 +73,9 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
   const elementColor = getElementColor(event.element);
   const elementIcon = getElementIcon(event.element);
 
-  // Google Form links - will be updated later
-  const inHouseFormLink = '#'; // TODO: Add Patkar College student form link
-  const outHouseFormLink = '#'; // TODO: Add external student form link
+  // Google Form links
+  const inHouseFormLink = 'https://forms.gle/CDhp38C4TRqG2TK8A'; // Patkar College student form
+  const outHouseFormLink = 'https://forms.gle/Dvpok7x7W78qm853A'; // External student form
 
   const dialogContent = (
     <div
