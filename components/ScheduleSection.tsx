@@ -169,30 +169,15 @@ export default function ScheduleSection() {
                         </p>
                       </div>
                     </div>
-                    <motion.div 
+                    <div 
                       className="px-6 py-3 rounded-full relative overflow-hidden w-full max-w-[200px]"
                       style={{
                         background: 'linear-gradient(135deg, rgba(139, 69, 19, 0.6), rgba(121, 85, 72, 0.8))',
                         boxShadow: '0 4px 15px rgba(121, 85, 72, 0.4)',
                       }}
-                      whileHover={{
-                        scale: 1.05,
-                        boxShadow: '0 6px 20px rgba(139, 69, 19, 0.6)',
-                      }}
                     >
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                        animate={{
-                          x: ['-200%', '200%'],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: 'linear',
-                        }}
-                      />
                       <span className="relative z-10 text-white font-bold text-base text-center block">{schedule.events.length} Events</span>
-                    </motion.div>
+                    </div>
                   </div>
 
                   {/* Desktop Layout - Horizontal */}
@@ -222,30 +207,15 @@ export default function ScheduleSection() {
                         </p>
                       </div>
                     </div>
-                    <motion.div 
+                    <div 
                       className="px-6 py-3 rounded-full relative overflow-hidden"
                       style={{
                         background: 'linear-gradient(135deg, rgba(139, 69, 19, 0.6), rgba(121, 85, 72, 0.8))',
                         boxShadow: '0 4px 15px rgba(121, 85, 72, 0.4)',
                       }}
-                      whileHover={{
-                        scale: 1.05,
-                        boxShadow: '0 6px 20px rgba(139, 69, 19, 0.6)',
-                      }}
                     >
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                        animate={{
-                          x: ['-200%', '200%'],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: 'linear',
-                        }}
-                      />
                       <span className="relative z-10 text-white font-bold text-lg">{schedule.events.length} Events</span>
-                    </motion.div>
+                    </div>
                   </div>
                 </div>
               </motion.div>

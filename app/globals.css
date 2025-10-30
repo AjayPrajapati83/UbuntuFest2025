@@ -328,3 +328,8 @@ button, a {
     filter: blur(30px) !important; /* Reduce blur intensity */
   }
 }
+
+/* Active scale utility for touch feedback */
+.active\:scale-98:active {
+  transform: scale(0.98);
+}

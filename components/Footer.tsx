@@ -104,7 +104,7 @@ export default function Footer() {
                 <Phone className="w-5 h-5 text-fire-400 mt-1" />
                 <div>
                   <p className="text-sm">+91 73043 83036 (Shree Pillay)</p>
-                  <p className="text-sm">+91 8369564372 (Ajay Prjapati)</p>
+                  <p className="text-sm">+91 8369564372 (Ajay Prajapati)</p>
                 </div>
               </li>
               <li className="flex items-start gap-3 text-white/60">

@@ -202,16 +202,9 @@ export default function TeamSection() {
                         <div className="w-56 h-56 rounded-xl bg-gradient-to-br from-fire-500/30 to-water-500/30 flex items-center justify-center relative overflow-hidden">
                           <User className="w-28 h-28 text-white/40" />
                           
-                          {/* Animated Gradient Overlay */}
-                          <motion.div
-                            className="absolute inset-0 bg-gradient-to-br from-fire-500/20 to-transparent"
-                            animate={{
-                              opacity: [0.3, 0.6, 0.3],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                            }}
+                          {/* Static Gradient Overlay */}
+                          <div
+                            className="absolute inset-0 bg-gradient-to-br from-fire-500/20 to-transparent opacity-40"
                           />
                         </div>
                       </motion.div>
