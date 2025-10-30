@@ -46,16 +46,8 @@ html {
   }
 }
 
-/* Hardware acceleration for animations */
+/* Improve touch scrolling on iOS */
 @media (max-width: 768px) {
-  * {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-  
-  /* Improve touch scrolling on iOS */
   * {
     -webkit-overflow-scrolling: touch;
   }
@@ -101,20 +93,18 @@ html {
 
 /* Glass Effect with fallbacks for better mobile support */
 .glass-effect {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(26, 26, 46, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-@supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
-  .glass-effect {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-}
-
-@supports not (backdrop-filter: blur(10px)) and not (-webkit-backdrop-filter: blur(10px)) {
-  .glass-effect {
-    background: rgba(26, 26, 46, 0.85);
+/* Only apply blur on desktop for better mobile performance */
+@media (min-width: 768px) {
+  @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
   }
 }
 

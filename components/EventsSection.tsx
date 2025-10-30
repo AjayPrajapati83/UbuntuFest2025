@@ -15,9 +15,11 @@ export default function EventsSection() {
 
   const handleEventClick = (event: Event) => {
     console.log('Event clicked:', event.name);
+    console.log('Setting selected event and opening dialog...');
     setSelectedEvent(event);
     setIsDialogOpen(true);
-    console.log('Dialog should be open now');
+    console.log('Dialog state updated - isOpen:', true);
+    console.log('Selected event:', event);
   };
 
   const handleCloseDialog = () => {
@@ -164,21 +166,21 @@ export default function EventsSection() {
                 </p>
 
                 {/* Description */}
-                <p className="text-sm text-white/60 mb-4 line-clamp-3">
+                <p className="text-sm text-white/80 mb-4 line-clamp-3">
                   {event.description}
                 </p>
 
                 {/* Event Details */}
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="text-xs px-3 py-1 rounded-full bg-white/5 text-white/70 flex items-center gap-1">
+                  <span className="text-xs px-3 py-1 rounded-full bg-white/10 text-white flex items-center gap-1">
                     <Calendar className="w-3 h-3" />
                     Day {event.day}
                   </span>
-                  <span className="text-xs px-3 py-1 rounded-full bg-white/5 text-white/70 flex items-center gap-1">
+                  <span className="text-xs px-3 py-1 rounded-full bg-white/10 text-white flex items-center gap-1">
                     {event.soloPrice ? <User className="w-3 h-3" /> : <Users className="w-3 h-3" />}
                     {event.soloPrice ? 'Solo' : 'Group'}
                   </span>
-                  <span className="text-xs px-3 py-1 rounded-full bg-white/5 text-white/70">
+                  <span className="text-xs px-3 py-1 rounded-full bg-white/10 text-white">
                     {event.category}
                   </span>
                 </div>

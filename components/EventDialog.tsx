@@ -22,6 +22,10 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
     return () => setMounted(false);
   }, []);
 
+  useEffect(() => {
+    console.log('EventDialog state:', { mounted, isOpen, hasEvent: !!event });
+  }, [mounted, isOpen, event]);
+
   // Enhanced body scroll lock for mobile
   useEffect(() => {
     if (isOpen) {
@@ -75,47 +79,27 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
 
   const dialogContent = (
     <div
-      className="fixed inset-0 z-[9999]"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4"
       style={{
         position: 'fixed',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.85)',
+        overflowY: 'auto',
+        overflowX: 'hidden',
         WebkitOverflowScrolling: 'touch',
-        isolation: 'isolate',
       } as React.CSSProperties}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          onClose();
+        }
+      }}
     >
-      {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/85"
-        style={{
-          backdropFilter: 'blur(8px)',
-          WebkitBackdropFilter: 'blur(8px)',
-          backgroundColor: 'rgba(0, 0, 0, 0.85)',
-        } as React.CSSProperties}
-        onClick={onClose}
-        role="button"
-        aria-label="Close dialog"
-      />
-
-      {/* Dialog Container */}
-      <div
-        className="absolute inset-0 flex items-center justify-center p-3 sm:p-4"
-        style={{
-          overflowY: 'auto',
-          overflowX: 'hidden',
-          WebkitOverflowScrolling: 'touch',
-        } as React.CSSProperties}
-        onClick={(e) => {
-          if (e.target === e.currentTarget) {
-            onClose();
-          }
-        }}
-      >
         <div
           ref={dialogRef}
-          className="relative w-full max-w-2xl my-auto"
+          className="relative w-full max-w-2xl my-auto z-[10000]"
           style={{
             maxHeight: '90dvh',
           } as React.CSSProperties}
@@ -125,9 +109,7 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
             className="rounded-xl sm:rounded-2xl overflow-hidden border-2 shadow-2xl"
             style={{
               borderColor: `${elementColor.primary}66`,
-              background: 'rgba(26, 26, 46, 0.95)',
-              backdropFilter: 'blur(20px)',
-              WebkitBackdropFilter: 'blur(20px)',
+              background: 'rgb(26, 26, 46)',
               boxShadow: `0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px ${elementColor.primary}33`,
             } as React.CSSProperties}
           >
@@ -292,7 +274,6 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 
