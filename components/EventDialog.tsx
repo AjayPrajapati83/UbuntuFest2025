@@ -137,23 +137,23 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
 
               {/* Header */}
               <div
-                className="p-5 sm:p-6 border-b border-white/10 clear-both"
+                className="p-3 sm:p-6 border-b border-white/10 clear-both"
                 style={{
                   background: `linear-gradient(135deg, ${elementColor.primary}22, transparent)`,
                 }}
               >
-                <div className="flex items-start gap-4 sm:gap-4">
-                  <div className="text-4xl sm:text-5xl flex-shrink-0">
+                <div className="flex items-start gap-2.5 sm:gap-4">
+                  <div className="text-3xl sm:text-5xl flex-shrink-0">
                     {elementIcon}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2 leading-tight">{event.name}</h2>
-                    <p className={`text-base sm:text-lg font-medium italic mb-3`} style={{ color: elementColor.primary }}>
+                    <h2 className="text-lg sm:text-3xl font-bold text-white mb-1 sm:mb-2 leading-tight">{event.name}</h2>
+                    <p className={`text-sm sm:text-lg font-medium italic mb-2 sm:mb-3`} style={{ color: elementColor.primary }}>
                       {event.themedName}
                     </p>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       <span
-                        className="text-xs sm:text-sm px-3 py-1.5 rounded-full font-semibold"
+                        className="text-xs px-2 py-1 rounded-full font-semibold"
                         style={{
                           backgroundColor: `${elementColor.primary}33`,
                           color: elementColor.primary,
@@ -161,13 +161,13 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
                       >
                         {event.element.toUpperCase()}
                       </span>
-                      <span className="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-white/10 text-white/70">
+                      <span className="text-xs px-2 py-1 rounded-full bg-white/10 text-white/70">
                         Day {event.day}
                       </span>
-                      <span className="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-white/10 text-white/70">
+                      <span className="text-xs px-2 py-1 rounded-full bg-white/10 text-white/70">
                         {event.eventType}
                       </span>
-                      <span className="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-white/10 text-white/70">
+                      <span className="text-xs px-2 py-1 rounded-full bg-white/10 text-white/70">
                         {event.category}
                       </span>
                     </div>
@@ -176,25 +176,25 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
               </div>
 
               {/* Content */}
-              <div className="p-5 sm:p-6 space-y-5 sm:space-y-6">
+              <div className="p-3 sm:p-6 space-y-3 sm:space-y-6">
                 {/* Price */}
                 <div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 flex items-center gap-2 select-none">
+                  <h3 className="text-base sm:text-xl font-semibold text-white mb-2 flex items-center gap-2 select-none">
                     💰 Registration Fee
                   </h3>
-                  <div className="glass-effect rounded-xl p-4 sm:p-5">
+                  <div className="glass-effect rounded-lg p-3 sm:p-5">
                     {event.soloPrice && (
-                      <p className="text-2xl sm:text-3xl font-bold" style={{ color: elementColor.primary }}>
+                      <p className="text-lg sm:text-3xl font-bold" style={{ color: elementColor.primary }}>
                         Solo: {event.soloPrice}
                       </p>
                     )}
                     {event.groupPrice && (
-                      <p className="text-2xl sm:text-3xl font-bold mt-1" style={{ color: elementColor.primary }}>
+                      <p className="text-lg sm:text-3xl font-bold mt-0.5" style={{ color: elementColor.primary }}>
                         Group: {event.groupPrice}
                       </p>
                     )}
                     {!event.soloPrice && !event.groupPrice && (
-                      <p className="text-2xl sm:text-3xl font-bold" style={{ color: elementColor.primary }}>
+                      <p className="text-lg sm:text-3xl font-bold" style={{ color: elementColor.primary }}>
                         {event.price}
                       </p>
                     )}
@@ -203,41 +203,41 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
 
                 {/* Description */}
                 <div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 flex items-center gap-2 select-none">
+                  <h3 className="text-base sm:text-xl font-semibold text-white mb-2 flex items-center gap-2 select-none">
                     📝 Description
                   </h3>
-                  <p className="text-base sm:text-lg text-white/80 leading-relaxed">{event.description}</p>
+                  <p className="text-sm sm:text-lg text-white/70 leading-relaxed">{event.description}</p>
                 </div>
 
                 {/* Rules */}
                 <div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 flex items-center gap-2 select-none">
+                  <h3 className="text-base sm:text-xl font-semibold text-white mb-2 flex items-center gap-2 select-none">
                     📋 Rules & Guidelines
                   </h3>
-                  <div className="glass-effect rounded-xl p-4 sm:p-5">
+                  <div className="glass-effect rounded-lg p-3 sm:p-5">
                     {event.rules.length > 0 ? (
-                      <ul className="space-y-2.5">
+                      <ul className="space-y-1.5">
                         {event.rules.map((rule, index) => (
-                          <li key={index} className="text-base sm:text-lg text-white/80 flex items-start gap-3">
-                            <span className="text-white/50 mt-1 text-lg">•</span>
+                          <li key={index} className="text-sm sm:text-lg text-white/70 flex items-start gap-2">
+                            <span className="text-white/50 mt-0.5">•</span>
                             <span className="flex-1">{rule}</span>
                           </li>
                         ))}
                       </ul>
                     ) : (
-                      <p className="text-base sm:text-lg text-white/50 italic">Coming Soon</p>
+                      <p className="text-sm sm:text-lg text-white/50 italic">Coming Soon</p>
                     )}
                   </div>
                 </div>
               </div>
 
               {/* Footer - Registration Buttons */}
-              <div className="p-5 sm:p-6 border-t border-white/10 space-y-3">
+              <div className="p-3 sm:p-6 border-t border-white/10 space-y-2">
                 <a
                   href={inHouseFormLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full py-4 sm:py-4 px-5 sm:px-6 rounded-xl font-bold text-base sm:text-lg text-center text-white transition-all active:scale-98 touch-manipulation shadow-lg"
+                  className="block w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg font-bold text-sm sm:text-lg text-center text-white transition-all active:scale-98 touch-manipulation shadow-lg"
                   style={{
                     background: `linear-gradient(135deg, ${elementColor.primary}, ${elementColor.secondary})`,
                     WebkitTapHighlightColor: 'transparent',
@@ -250,7 +250,7 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
                   href={outHouseFormLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full py-4 sm:py-4 px-5 sm:px-6 rounded-xl font-bold text-base sm:text-lg text-center text-white border-2 transition-all active:scale-98 touch-manipulation"
+                  className="block w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg font-bold text-sm sm:text-lg text-center text-white border-2 transition-all active:scale-98 touch-manipulation"
                   style={{
                     borderColor: elementColor.primary,
                     background: 'rgba(255, 255, 255, 0.05)',
@@ -262,7 +262,7 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
 
                 <button
                   onClick={onClose}
-                  className="w-full py-3 sm:py-3 px-5 sm:px-6 rounded-xl font-semibold text-base sm:text-lg text-center text-white/70 border border-white/10 transition-all active:scale-98 touch-manipulation"
+                  className="w-full py-2 sm:py-3 px-4 sm:px-6 rounded-lg font-semibold text-sm sm:text-lg text-center text-white/70 border border-white/10 transition-all active:scale-98 touch-manipulation"
                   style={{
                     background: 'rgba(255, 255, 255, 0.05)',
                     WebkitTapHighlightColor: 'transparent',
