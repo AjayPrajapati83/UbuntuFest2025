@@ -111,31 +111,25 @@ export default function TeamSection() {
     <section id="team" className="section-padding relative z-10">
       <div className="container-custom">
         {/* Section Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.h2
+        <div className="text-center mb-16">
+          <h2
             className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 gradient-text"
             style={{
               textShadow: '0 0 30px rgba(255, 87, 34, 0.6)',
             } as React.CSSProperties}
           >
             Our Team
-          </motion.h2>
+          </h2>
           <p className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto">
             Meet the passionate team behind Ubuntu 2025
           </p>
-        </motion.div>
+        </div>
 
-        {/* Fire Background Effect */}
+        {/* Fire Background Effect - Static for performance */}
         {mounted && (
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {fireParticles.map((particle, i) => (
-              <motion.div
+          <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
+            {fireParticles.slice(0, 5).map((particle, i) => (
+              <div
                 key={`fire-bg-${i}`}
                 className="absolute rounded-full"
                 style={{
@@ -146,16 +140,6 @@ export default function TeamSection() {
                   background: `radial-gradient(circle, rgba(255, 87, 34, ${particle.opacity}), transparent)`,
                   filter: 'blur(50px)',
                 } as React.CSSProperties}
-                animate={{
-                  opacity: [0.3, 0.7, 0.3],
-                  scale: [1, 1.2, 1],
-                  y: [0, -30, 0],
-                }}
-                transition={{
-                  duration: particle.duration,
-                  repeat: Infinity,
-                  delay: particle.delay,
-                }}
               />
             ))}
           </div>
@@ -164,13 +148,7 @@ export default function TeamSection() {
         {/* Team Categories */}
         <div className="space-y-16 relative z-10">
           {teamStructure.map((category, categoryIndex) => (
-            <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: categoryIndex * 0.1, duration: 0.5 }}
-            >
+            <div key={category.title}>
               {/* Category Title */}
               <h3 className="text-3xl md:text-4xl font-bold text-center mb-8 gradient-text">
                 {category.title}
@@ -217,7 +195,7 @@ export default function TeamSection() {
                   </motion.div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 

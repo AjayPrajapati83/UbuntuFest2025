@@ -29,75 +29,30 @@ export default function ScheduleSection() {
     <section id="schedule" className="section-padding relative">
       <div className="container-custom">
         {/* Section Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.h2
-            className="text-3xl sm:text-5xl md:text-6xl font-bold mb-4 relative inline-block"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+        <div className="text-center mb-16">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-4 relative inline-block">
             <div className="flex items-center justify-center gap-2 sm:gap-3">
-              <motion.span 
-                className="text-2xl sm:text-4xl md:text-5xl"
-                animate={{
-                  rotate: [0, 10, -10, 0],
-                  scale: [1, 1.1, 1],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
+              <span className="text-2xl sm:text-4xl md:text-5xl">
                 🌍
-              </motion.span>
+              </span>
               <span className="earth-text whitespace-nowrap relative">
                 Grounded Schedule
-                <motion.div
+                <div
                   className="absolute -bottom-2 left-0 right-0 h-1 rounded-full"
                   style={{
                     background: 'linear-gradient(90deg, #8B4513, #795548, #A0826D)',
                   }}
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
                 />
               </span>
-              <motion.span 
-                className="text-2xl sm:text-4xl md:text-5xl"
-                animate={{
-                  rotate: [0, -10, 10, 0],
-                  scale: [1, 1.1, 1],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 0.5,
-                }}
-              >
+              <span className="text-2xl sm:text-4xl md:text-5xl">
                 🌍
-              </motion.span>
+              </span>
             </div>
-          </motion.h2>
-          <motion.p 
-            className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-          >
+          </h2>
+          <p className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto">
             Rooted in tradition, growing towards excellence. Your journey through the elements begins here.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         {/* Earth Background Elements */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
