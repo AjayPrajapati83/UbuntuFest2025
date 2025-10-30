@@ -245,8 +245,6 @@ html {
 /* Static card for better mobile performance */
 .card-base-static {
   @apply rounded-xl p-6 transition-colors duration-200;
-  /* Optimize rendering on mobile */
-  contain: layout style paint;
 }
 
 /* Touch-friendly elements */
@@ -273,6 +271,16 @@ button, a {
 
 .spin-slow {
   animation: spin-slow 20s linear infinite;
+}
+
+/* Fade In Animation for Dialog */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Responsive Typography */
