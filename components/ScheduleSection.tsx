@@ -253,16 +253,16 @@ export default function ScheduleSection() {
               {/* Events List */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-0 md:pl-8">
                 {schedule.events.map((event, eventIndex) => (
-                  <div
+                  <motion.div
                     key={event.name}
                     className="glass-effect rounded-xl p-4 border transition-all duration-300 group"
                     style={{
                       borderColor: 'rgba(121, 85, 72, 0.2)',
-                      willChange: 'auto',
-                      transform: 'translateZ(0)',
-                      WebkitBackfaceVisibility: 'hidden',
-                      backfaceVisibility: 'hidden',
                     } as React.CSSProperties}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.3, delay: eventIndex * 0.05 }}
                   >
                     <div className="flex items-start gap-3 mb-3">
                       <div className="text-2xl">
@@ -302,7 +302,7 @@ export default function ScheduleSection() {
                         </span>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>

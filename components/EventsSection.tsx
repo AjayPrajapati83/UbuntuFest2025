@@ -127,14 +127,16 @@ export default function EventsSection() {
             const elementIcon = getElementIcon(event.element);
 
             return (
-              <div
+              <motion.div
                 key={event.name}
                 className="card-base-static glass-effect border-2 transition-all"
                 style={{
                   borderColor: `${elementColor.primary}33`,
-                  willChange: 'auto',
-                  transform: 'translateZ(0)',
                 } as React.CSSProperties}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
               >
                 {/* Event Header */}
                 <div className="flex items-start justify-between mb-4">
@@ -192,7 +194,9 @@ export default function EventsSection() {
                 {/* Register Button */}
                 <button
                   onClick={(e) => {
+                    e.preventDefault();
                     e.stopPropagation();
+                    console.log('Button clicked:', event.name);
                     handleEventClick(event);
                   }}
                   className="w-full py-3 rounded-lg font-semibold text-white transition-colors duration-200 mt-2 active:opacity-90 touch-manipulation"
@@ -200,11 +204,13 @@ export default function EventsSection() {
                     background: elementColor.gradientStyle,
                     WebkitTapHighlightColor: 'transparent',
                     cursor: 'pointer',
+                    touchAction: 'manipulation',
                   } as React.CSSProperties}
+                  type="button"
                 >
                   Register Now
                 </button>
-              </div>
+              </motion.div>
             );
           })}
         </div>

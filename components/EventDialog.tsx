@@ -55,7 +55,7 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
     }
   }, [isOpen]);
   
-  if (!event) {
+  if (!event || !isOpen) {
     return null;
   }
 
@@ -67,228 +67,225 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
   const outHouseFormLink = '#'; // TODO: Add external student form link
 
   return (
-    <>
-      {isOpen && (
-        <div
-          className="fixed inset-0 z-[99999] isolate"
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            WebkitOverflowScrolling: 'touch',
-          } as React.CSSProperties}
-        >
-          {/* Backdrop */}
-          <div
-            className="absolute inset-0 bg-black/85"
-            style={{
-              backdropFilter: 'blur(8px)',
-              WebkitBackdropFilter: 'blur(8px)',
-              backgroundColor: 'rgba(0, 0, 0, 0.85)',
-            } as React.CSSProperties}
-            onClick={onClose}
-            role="button"
-            aria-label="Close dialog"
-          />
+    <div
+      className="fixed inset-0 z-[99999]"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        WebkitOverflowScrolling: 'touch',
+        isolation: 'isolate',
+      } as React.CSSProperties}
+    >
+      {/* Backdrop */}
+      <div
+        className="absolute inset-0 bg-black/85"
+        style={{
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
+          backgroundColor: 'rgba(0, 0, 0, 0.85)',
+        } as React.CSSProperties}
+        onClick={onClose}
+        role="button"
+        aria-label="Close dialog"
+      />
 
-          {/* Dialog Container */}
+      {/* Dialog Container */}
+      <div
+        className="absolute inset-0 flex items-center justify-center p-3 sm:p-4"
+        style={{
+          overflowY: 'auto',
+          overflowX: 'hidden',
+          WebkitOverflowScrolling: 'touch',
+        } as React.CSSProperties}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            onClose();
+          }
+        }}
+      >
+        <div
+          ref={dialogRef}
+          className="relative w-full max-w-2xl my-auto"
+          style={{
+            maxHeight: '90dvh',
+          } as React.CSSProperties}
+          onClick={(e) => e.stopPropagation()}
+        >
           <div
-            className="absolute inset-0 flex items-center justify-center p-3 sm:p-4"
+            className="rounded-xl sm:rounded-2xl overflow-hidden border-2 shadow-2xl"
             style={{
-              overflowY: 'auto',
-              overflowX: 'hidden',
-              WebkitOverflowScrolling: 'touch',
+              borderColor: `${elementColor.primary}66`,
+              background: 'rgba(26, 26, 46, 0.95)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              boxShadow: `0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px ${elementColor.primary}33`,
             } as React.CSSProperties}
-            onClick={(e) => {
-              if (e.target === e.currentTarget) {
-                onClose();
-              }
-            }}
           >
             <div
-              ref={dialogRef}
-              className="relative w-full max-w-2xl my-auto"
+              className="overflow-y-auto overflow-x-hidden"
               style={{
                 maxHeight: '90dvh',
+                WebkitOverflowScrolling: 'touch',
               } as React.CSSProperties}
-              onClick={(e) => e.stopPropagation()}
             >
-              <div
-                className="rounded-xl sm:rounded-2xl overflow-hidden border-2 shadow-2xl"
+              {/* Close Button */}
+              <button
+                onClick={onClose}
+                className="sticky top-2 right-2 sm:top-4 sm:right-4 float-right w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-white transition-all z-50 touch-manipulation active:scale-95"
                 style={{
-                  borderColor: `${elementColor.primary}66`,
-                  background: 'rgba(26, 26, 46, 0.95)',
-                  backdropFilter: 'blur(20px)',
-                  WebkitBackdropFilter: 'blur(20px)',
-                  boxShadow: `0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px ${elementColor.primary}33`,
+                  background: 'rgba(0, 0, 0, 0.6)',
+                  backdropFilter: 'blur(10px)',
+                  WebkitBackdropFilter: 'blur(10px)',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
                 } as React.CSSProperties}
+                aria-label="Close dialog"
               >
-                <div
-                  className="overflow-y-auto overflow-x-hidden"
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+
+              {/* Header */}
+              <div
+                className="p-4 sm:p-6 border-b border-white/10 clear-both"
+                style={{
+                  background: `linear-gradient(135deg, ${elementColor.primary}22, transparent)`,
+                }}
+              >
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="text-3xl sm:text-5xl">
+                    {elementIcon}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h2 className="text-xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">{event.name}</h2>
+                    <p className={`text-sm sm:text-lg font-medium italic mb-2 truncate`} style={{ color: elementColor.primary }}>
+                      {event.themedName}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                      <span
+                        className="text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full font-semibold"
+                        style={{
+                          backgroundColor: `${elementColor.primary}33`,
+                          color: elementColor.primary,
+                        }}
+                      >
+                        {event.element.toUpperCase()}
+                      </span>
+                      <span className="text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white/10 text-white/70">
+                        Day {event.day}
+                      </span>
+                      <span className="text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white/10 text-white/70">
+                        {event.eventType}
+                      </span>
+                      <span className="text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white/10 text-white/70">
+                        {event.category}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+                {/* Price */}
+                <div>
+                  <h3 className="text-base sm:text-lg font-semibold text-white mb-2 flex items-center gap-2 select-none">
+                    💰 Registration Fee
+                  </h3>
+                  <div className="glass-effect rounded-lg p-3 sm:p-4">
+                    {event.soloPrice && (
+                      <p className="text-xl sm:text-2xl font-bold" style={{ color: elementColor.primary }}>
+                        Solo: {event.soloPrice}
+                      </p>
+                    )}
+                    {event.groupPrice && (
+                      <p className="text-xl sm:text-2xl font-bold" style={{ color: elementColor.primary }}>
+                        Group: {event.groupPrice}
+                      </p>
+                    )}
+                    {!event.soloPrice && !event.groupPrice && (
+                      <p className="text-xl sm:text-2xl font-bold" style={{ color: elementColor.primary }}>
+                        {event.price}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Description */}
+                <div>
+                  <h3 className="text-base sm:text-lg font-semibold text-white mb-2 flex items-center gap-2 select-none">
+                    📝 Description
+                  </h3>
+                  <p className="text-sm sm:text-base text-white/70 leading-relaxed">{event.description}</p>
+                </div>
+
+                {/* Rules */}
+                <div>
+                  <h3 className="text-base sm:text-lg font-semibold text-white mb-2 flex items-center gap-2 select-none">
+                    📋 Rules & Guidelines
+                  </h3>
+                  <div className="glass-effect rounded-lg p-3 sm:p-4">
+                    {event.rules.length > 0 ? (
+                      <ul className="space-y-2">
+                        {event.rules.map((rule, index) => (
+                          <li key={index} className="text-sm sm:text-base text-white/70 flex items-start gap-2">
+                            <span className="text-white/40 mt-1">•</span>
+                            <span>{rule}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-sm sm:text-base text-white/50 italic">Rules will be announced soon</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Footer - Registration Buttons */}
+              <div className="p-4 sm:p-6 border-t border-white/10 space-y-2 sm:space-y-3">
+                <a
+                  href={inHouseFormLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg font-semibold text-sm sm:text-base text-center text-white transition-all active:opacity-80 touch-manipulation"
                   style={{
-                    maxHeight: '90dvh',
-                    WebkitOverflowScrolling: 'touch',
+                    background: `linear-gradient(135deg, ${elementColor.primary}, ${elementColor.secondary})`,
+                    WebkitTapHighlightColor: 'transparent',
                   } as React.CSSProperties}
                 >
-                {/* Close Button */}
+                  🎓 Register In-House (Patkar College)
+                </a>
+
+                <a
+                  href={outHouseFormLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg font-semibold text-sm sm:text-base text-center text-white border-2 transition-all active:opacity-80 touch-manipulation"
+                  style={{
+                    borderColor: elementColor.primary,
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    WebkitTapHighlightColor: 'transparent',
+                  } as React.CSSProperties}
+                >
+                  🌍 Register Out-House (External)
+                </a>
+
                 <button
                   onClick={onClose}
-                  className="sticky top-2 right-2 sm:top-4 sm:right-4 float-right w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-white transition-all z-50 touch-manipulation active:scale-95"
+                  className="w-full py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg font-medium text-sm sm:text-base text-center text-white/70 border border-white/10 transition-all active:opacity-80 touch-manipulation"
                   style={{
-                    background: 'rgba(0, 0, 0, 0.6)',
-                    backdropFilter: 'blur(10px)',
-                    WebkitBackdropFilter: 'blur(10px)',
-                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    WebkitTapHighlightColor: 'transparent',
                   } as React.CSSProperties}
-                  aria-label="Close dialog"
                 >
-                  <X className="w-5 h-5 sm:w-6 sm:h-6" />
+                  Close
                 </button>
-
-                {/* Header */}
-                <div
-                  className="p-4 sm:p-6 border-b border-white/10 clear-both"
-                  style={{
-                    background: `linear-gradient(135deg, ${elementColor.primary}22, transparent)`,
-                  }}
-                >
-                  <div className="flex items-start gap-3 sm:gap-4">
-                    <div className="text-3xl sm:text-5xl">
-                      {elementIcon}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h2 className="text-xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">{event.name}</h2>
-                      <p className={`text-sm sm:text-lg font-medium italic mb-2 truncate`} style={{ color: elementColor.primary }}>
-                        {event.themedName}
-                      </p>
-                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                        <span
-                          className="text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full font-semibold"
-                          style={{
-                            backgroundColor: `${elementColor.primary}33`,
-                            color: elementColor.primary,
-                          }}
-                        >
-                          {event.element.toUpperCase()}
-                        </span>
-                        <span className="text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white/10 text-white/70">
-                          Day {event.day}
-                        </span>
-                        <span className="text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white/10 text-white/70">
-                          {event.eventType}
-                        </span>
-                        <span className="text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white/10 text-white/70">
-                          {event.category}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
-                  {/* Price */}
-                  <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-white mb-2 flex items-center gap-2 select-none">
-                      💰 Registration Fee
-                    </h3>
-                    <div className="glass-effect rounded-lg p-3 sm:p-4">
-                      {event.soloPrice && (
-                        <p className="text-xl sm:text-2xl font-bold" style={{ color: elementColor.primary }}>
-                          Solo: {event.soloPrice}
-                        </p>
-                      )}
-                      {event.groupPrice && (
-                        <p className="text-xl sm:text-2xl font-bold" style={{ color: elementColor.primary }}>
-                          Group: {event.groupPrice}
-                        </p>
-                      )}
-                      {!event.soloPrice && !event.groupPrice && (
-                        <p className="text-xl sm:text-2xl font-bold" style={{ color: elementColor.primary }}>
-                          {event.price}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Description */}
-                  <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-white mb-2 flex items-center gap-2 select-none">
-                      📝 Description
-                    </h3>
-                    <p className="text-sm sm:text-base text-white/70 leading-relaxed">{event.description}</p>
-                  </div>
-
-                  {/* Rules */}
-                  <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-white mb-2 flex items-center gap-2 select-none">
-                      📋 Rules & Guidelines
-                    </h3>
-                    <div className="glass-effect rounded-lg p-3 sm:p-4">
-                      {event.rules.length > 0 ? (
-                        <ul className="space-y-2">
-                          {event.rules.map((rule, index) => (
-                            <li key={index} className="text-sm sm:text-base text-white/70 flex items-start gap-2">
-                              <span className="text-white/40 mt-1">•</span>
-                              <span>{rule}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      ) : (
-                        <p className="text-sm sm:text-base text-white/50 italic">Rules will be announced soon</p>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Footer - Registration Buttons */}
-                <div className="p-4 sm:p-6 border-t border-white/10 space-y-2 sm:space-y-3">
-                  <a
-                    href={inHouseFormLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg font-semibold text-sm sm:text-base text-center text-white transition-all active:opacity-80 touch-manipulation"
-                    style={{
-                      background: `linear-gradient(135deg, ${elementColor.primary}, ${elementColor.secondary})`,
-                      WebkitTapHighlightColor: 'transparent',
-                    } as React.CSSProperties}
-                  >
-                    🎓 Register In-House (Patkar College)
-                  </a>
-
-                  <a
-                    href={outHouseFormLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg font-semibold text-sm sm:text-base text-center text-white border-2 transition-all active:opacity-80 touch-manipulation"
-                    style={{
-                      borderColor: elementColor.primary,
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      WebkitTapHighlightColor: 'transparent',
-                    } as React.CSSProperties}
-                  >
-                    🌍 Register Out-House (External)
-                  </a>
-
-                  <button
-                    onClick={onClose}
-                    className="w-full py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg font-medium text-sm sm:text-base text-center text-white/70 border border-white/10 transition-all active:opacity-80 touch-manipulation"
-                    style={{
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      WebkitTapHighlightColor: 'transparent',
-                    } as React.CSSProperties}
-                  >
-                    Close
-                  </button>
-                </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
-      )}
-    </>
+      </div>
+    </div>
   );
 }
