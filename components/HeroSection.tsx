@@ -44,11 +44,11 @@ export default function HeroSection() {
       <div className="text-center max-w-6xl mx-auto">
         {/* Floating Elemental Orbs - Reduced on Mobile */}
         {!isMobile && (
-        <div className="absolute top-0 left-0 right-0 pointer-events-none" style={{ height: '60vh', zIndex: -1 }}>
+        <div className="absolute left-0 right-0 pointer-events-none" style={{ top: '120px', height: '500px', zIndex: -1 }}>
           {elements.map((element, index) => {
-            // Adjust positioning to avoid button overlap - keep in upper portion only
-            const leftPositions = [10, 15, 85, 90, 50]; // Spread out more, avoid center buttons
-            const topPositions = [15, 55, 20, 60, 10]; // Keep in upper 60% of hero section
+            // Adjust positioning to avoid button overlap and heading
+            const leftPositions = [8, 12, 88, 92, 50]; // Spread out more, avoid center buttons
+            const topPositions = [25, 70, 30, 75, 15]; // Positioned below heading, around buttons
             
             return (
               <motion.div
