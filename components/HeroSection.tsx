@@ -6,7 +6,8 @@ import { ChevronDown } from 'lucide-react';
 
 export default function HeroSection() {
   const [currentElement, setCurrentElement] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(true); // Start with true to match SSR
+  const [mounted, setMounted] = useState(false);
   
   const elements = [
     { name: 'Air', color: 'text-air-300', emoji: '💨' },
@@ -17,6 +18,8 @@ export default function HeroSection() {
   ];
 
   useEffect(() => {
+    setMounted(true);
+    
     // Detect mobile
     setIsMobile(window.innerWidth < 768);
     

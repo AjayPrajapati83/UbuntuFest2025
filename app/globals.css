@@ -314,22 +314,17 @@ button, a {
   isolation: isolate;
 }
 
-/* Ensure background animations are not affected by mobile optimizations */
+/* Mobile performance optimizations for background */
 @media (max-width: 768px) {
-  /* Force hardware acceleration for smooth animations */
-  [class*="motion"] {
-    -webkit-transform: translateZ(0);
+  /* Reduce complexity of background animations on mobile */
+  .fixed.inset-0 {
+    /* Use GPU acceleration carefully */
     transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-perspective: 1000;
-    perspective: 1000;
+    will-change: auto;
   }
   
-  /* Preserve background animation durations */
-  .fixed [class*="motion"],
-  .fixed [class*="absolute"] {
-    animation-duration: inherit !important;
-    transition-duration: inherit !important;
+  /* Disable expensive filters on mobile for better performance */
+  .fixed .absolute[style*="blur"] {
+    filter: blur(30px) !important; /* Reduce blur intensity */
   }
 }

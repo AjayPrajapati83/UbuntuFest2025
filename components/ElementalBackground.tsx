@@ -9,9 +9,10 @@ interface ElementalBackgroundProps {
 
 export default function ElementalBackground({ currentSection = 'hero' }: ElementalBackgroundProps) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [windowWidth, setWindowWidth] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(768); // Default to mobile width for SSR
+  const [isMobile, setIsMobile] = useState(true); // Start with true for SSR
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [stars, setStars] = useState<Array<{ width: number; height: number; left: string; top: string; duration: number; delay: number }>>([]);
   const [shootingStars, setShootingStars] = useState<Array<{ left: string; top: string }>>([]);
   const [embers, setEmbers] = useState<Array<{ width: number; height: number; left: string; top: string; opacity: number; duration: number; delay: number }>>([]);
@@ -19,6 +20,8 @@ export default function ElementalBackground({ currentSection = 'hero' }: Element
   const [cosmicDust, setCosmicDust] = useState<Array<{ width: number; height: number; left: string; top: string; color: string; xMove: number; yMove: number; duration: number; delay: number }>>([]);
 
   useEffect(() => {
+    setMounted(true);
+    
     // Set window width and mobile detection on client side
     const checkMobile = () => {
       const width = window.innerWidth;
@@ -26,8 +29,8 @@ export default function ElementalBackground({ currentSection = 'hero' }: Element
       const mobile = width < 768;
       setIsMobile(mobile);
       
-      // Generate stars based on device type
-      const starCount = mobile ? 30 : 150;
+      // Generate stars based on device type - reduced for mobile performance
+      const starCount = mobile ? 15 : 150;
       setStars(
         Array.from({ length: starCount }).map(() => ({
           width: Math.random() * 3 + 1,
@@ -39,16 +42,18 @@ export default function ElementalBackground({ currentSection = 'hero' }: Element
         }))
       );
       
-      // Generate shooting stars
-      setShootingStars(
-        Array.from({ length: 3 }).map(() => ({
-          left: `${Math.random() * 100}%`,
-          top: `${Math.random() * 50}%`,
-        }))
-      );
+      // Generate shooting stars - disabled on mobile
+      if (!mobile) {
+        setShootingStars(
+          Array.from({ length: 3 }).map(() => ({
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 50}%`,
+          }))
+        );
+      }
       
-      // Generate embers
-      const emberCount = mobile ? 8 : 25;
+      // Generate embers - reduced for mobile
+      const emberCount = mobile ? 4 : 25;
       setEmbers(
         Array.from({ length: emberCount }).map(() => ({
           width: Math.random() * 120 + 40,
@@ -61,8 +66,8 @@ export default function ElementalBackground({ currentSection = 'hero' }: Element
         }))
       );
       
-      // Generate air particles
-      const airCount = mobile ? 10 : 30;
+      // Generate air particles - reduced for mobile
+      const airCount = mobile ? 5 : 30;
       setAirParticles(
         Array.from({ length: airCount }).map((_, i) => ({
           width: Math.random() * 8 + 2,
@@ -75,8 +80,8 @@ export default function ElementalBackground({ currentSection = 'hero' }: Element
         }))
       );
       
-      // Generate cosmic dust
-      const dustCount = mobile ? 5 : 15;
+      // Generate cosmic dust - reduced for mobile
+      const dustCount = mobile ? 3 : 15;
       setCosmicDust(
         Array.from({ length: dustCount }).map(() => ({
           width: Math.random() * 200 + 100,
@@ -247,7 +252,7 @@ export default function ElementalBackground({ currentSection = 'hero' }: Element
               left: ember.left,
               top: ember.top,
               background: `radial-gradient(circle, rgba(255, 87, 34, ${ember.opacity}), transparent)`,
-              filter: 'blur(40px)',
+              filter: isMobile ? 'blur(25px)' : 'blur(40px)',
             } as React.CSSProperties}
             animate={{
               opacity: [0.2, 0.6, 0.2],
@@ -330,7 +335,7 @@ export default function ElementalBackground({ currentSection = 'hero' }: Element
         className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full opacity-30"
         style={{
           background: 'radial-gradient(circle, rgba(135, 206, 235, 0.6), transparent)',
-          filter: 'blur(80px)',
+          filter: isMobile ? 'blur(40px)' : 'blur(80px)',
         }}
         animate={{
           scale: [1, 1.3, 1],
@@ -348,7 +353,7 @@ export default function ElementalBackground({ currentSection = 'hero' }: Element
         className="absolute top-1/2 right-1/4 w-72 h-72 rounded-full opacity-30"
         style={{
           background: 'radial-gradient(circle, rgba(255, 87, 34, 0.6), transparent)',
-          filter: 'blur(80px)',
+          filter: isMobile ? 'blur(40px)' : 'blur(80px)',
         }}
         animate={{
           scale: [1, 1.4, 1],
@@ -366,7 +371,7 @@ export default function ElementalBackground({ currentSection = 'hero' }: Element
         className="absolute bottom-1/4 left-1/3 w-80 h-80 rounded-full opacity-30"
         style={{
           background: 'radial-gradient(circle, rgba(33, 150, 243, 0.6), transparent)',
-          filter: 'blur(80px)',
+          filter: isMobile ? 'blur(40px)' : 'blur(80px)',
         }}
         animate={{
           scale: [1, 1.2, 1],
@@ -392,7 +397,7 @@ export default function ElementalBackground({ currentSection = 'hero' }: Element
               left: dust.left,
               top: dust.top,
               background: `radial-gradient(circle, rgba(${dust.color}, 0.15), transparent)`,
-              filter: 'blur(60px)',
+              filter: isMobile ? 'blur(30px)' : 'blur(60px)',
             }}
             animate={{
               x: [0, dust.xMove, 0],

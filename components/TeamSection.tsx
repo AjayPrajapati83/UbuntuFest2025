@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { User } from 'lucide-react';
+import { useState, useEffect, useMemo } from 'react';
 
 interface TeamMember {
   name: string;
@@ -13,6 +14,24 @@ interface TeamCategory {
 }
 
 export default function TeamSection() {
+  const [mounted, setMounted] = useState(false);
+  
+  // Generate fire particles once to avoid hydration mismatch
+  const fireParticles = useMemo(() => 
+    Array.from({ length: 15 }).map(() => ({
+      width: Math.random() * 150 + 50,
+      height: Math.random() * 150 + 50,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      opacity: Math.random() * 0.2 + 0.1,
+      duration: Math.random() * 4 + 3,
+      delay: Math.random() * 2,
+    })), []
+  );
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   const teamStructure: TeamCategory[] = [
     {
       title: 'CL',
@@ -113,32 +132,34 @@ export default function TeamSection() {
         </motion.div>
 
         {/* Fire Background Effect */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {Array.from({ length: 15 }).map((_, i) => (
-            <motion.div
-              key={`fire-bg-${i}`}
-              className="absolute rounded-full"
-              style={{
-                width: `${Math.random() * 150 + 50}px`,
-                height: `${Math.random() * 150 + 50}px`,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                background: `radial-gradient(circle, rgba(255, 87, 34, ${Math.random() * 0.2 + 0.1}), transparent)`,
-                filter: 'blur(50px)',
-              } as React.CSSProperties}
-              animate={{
-                opacity: [0.3, 0.7, 0.3],
-                scale: [1, 1.2, 1],
-                y: [0, -30, 0],
-              }}
-              transition={{
-                duration: Math.random() * 4 + 3,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
-        </div>
+        {mounted && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {fireParticles.map((particle, i) => (
+              <motion.div
+                key={`fire-bg-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  width: `${particle.width}px`,
+                  height: `${particle.height}px`,
+                  left: `${particle.left}%`,
+                  top: `${particle.top}%`,
+                  background: `radial-gradient(circle, rgba(255, 87, 34, ${particle.opacity}), transparent)`,
+                  filter: 'blur(50px)',
+                } as React.CSSProperties}
+                animate={{
+                  opacity: [0.3, 0.7, 0.3],
+                  scale: [1, 1.2, 1],
+                  y: [0, -30, 0],
+                }}
+                transition={{
+                  duration: particle.duration,
+                  repeat: Infinity,
+                  delay: particle.delay,
+                }}
+              />
+            ))}
+          </div>
+        )}
 
         {/* Team Categories */}
         <div className="space-y-16 relative z-10">
