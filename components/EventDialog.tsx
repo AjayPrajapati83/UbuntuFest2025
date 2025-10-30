@@ -26,15 +26,42 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
     console.log('EventDialog state:', { mounted, isOpen, hasEvent: !!event });
   }, [mounted, isOpen, event]);
 
-  // Simple scroll lock without position changes to prevent flickering
+  // Enhanced body scroll lock for mobile
   useEffect(() => {
     if (isOpen) {
-      // Simple overflow hidden without position changes
-      const originalOverflow = document.body.style.overflow;
+      // Store current scroll position
+      scrollPositionRef.current = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Lock scroll - iOS compatible
+      const scrollY = scrollPositionRef.current;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
       document.body.style.overflow = 'hidden';
+      document.body.style.width = '100%';
+      
+      // Prevent touch move on body
+      const preventScroll = (e: TouchEvent) => {
+        if (dialogRef.current && !dialogRef.current.contains(e.target as Node)) {
+          e.preventDefault();
+        }
+      };
+      
+      document.body.addEventListener('touchmove', preventScroll, { passive: false });
       
       return () => {
-        document.body.style.overflow = originalOverflow;
+        document.body.removeEventListener('touchmove', preventScroll);
+        
+        // Restore scroll position
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.right = '';
+        document.body.style.overflow = '';
+        document.body.style.width = '';
+        
+        window.scrollTo(0, scrollPositionRef.current);
       };
     }
   }, [isOpen]);
@@ -63,7 +90,6 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
         overflowY: 'auto',
         overflowX: 'hidden',
         WebkitOverflowScrolling: 'touch',
-        animation: 'fadeIn 0.15s ease-out',
       } as React.CSSProperties}
       onClick={(e) => {
         if (e.target === e.currentTarget) {
@@ -73,7 +99,7 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
     >
         <div
           ref={dialogRef}
-          className="relative w-full max-w-2xl my-auto"
+          className="relative w-full max-w-2xl my-auto z-[10000]"
           style={{
             maxHeight: '90dvh',
           } as React.CSSProperties}

@@ -120,13 +120,14 @@ export default function ElementalBackground({ currentSection = 'hero' }: Element
   }, []);
 
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden">
+    <div className="fixed inset-0 z-0 overflow-hidden" style={{ willChange: 'auto' }}>
       {/* Animated Gradient Background */}
       <motion.div 
         className="absolute inset-0"
         style={{
           background: 'linear-gradient(45deg, #0f0c29, #302b63, #24243e)',
           backgroundSize: '400% 400%',
+          willChange: 'background-position',
         }}
         animate={{
           backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
@@ -409,21 +410,23 @@ export default function ElementalBackground({ currentSection = 'hero' }: Element
       </div>
       
       {/* Animated Light Rays */}
-      <motion.div
-        className="absolute inset-0 opacity-20"
-        style={{
-          background: 'linear-gradient(45deg, transparent 30%, rgba(135, 206, 235, 0.3) 50%, transparent 70%)',
-          backgroundSize: '200% 200%',
-        }}
-        animate={{
-          backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: 'linear',
-        }}
-      />
+      {!isMobile && (
+        <motion.div
+          className="absolute inset-0 opacity-20"
+          style={{
+            background: 'linear-gradient(45deg, transparent 30%, rgba(135, 206, 235, 0.3) 50%, transparent 70%)',
+            backgroundSize: '200% 200%',
+          }}
+          animate={{
+            backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: 'linear',
+          }}
+        />
+      )}
       
       {/* Gradient Overlay for Depth */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-space-950/50" />

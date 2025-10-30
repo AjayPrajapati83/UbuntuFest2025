@@ -65,9 +65,10 @@ html {
   }
 }
 
-/* Optimize animations on mobile */
+/* Optimize animations on mobile - exclude background animations */
 @media (max-width: 768px) {
-  * {
+  /* Target only interactive elements, not background animations */
+  button, a, .card-base, .card-base-static, [role="button"] {
     animation-duration: 0.3s !important;
     transition-duration: 0.2s !important;
   }
@@ -245,6 +246,8 @@ html {
 /* Static card for better mobile performance */
 .card-base-static {
   @apply rounded-xl p-6 transition-colors duration-200;
+  /* Optimize rendering on mobile */
+  contain: layout style paint;
 }
 
 /* Touch-friendly elements */
@@ -271,16 +274,6 @@ button, a {
 
 .spin-slow {
   animation: spin-slow 20s linear infinite;
-}
-
-/* Fade In Animation for Dialog */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 /* Responsive Typography */
@@ -319,4 +312,24 @@ button, a {
 /* Isolate stacking contexts for modals */
 .isolate {
   isolation: isolate;
+}
+
+/* Ensure background animations are not affected by mobile optimizations */
+@media (max-width: 768px) {
+  /* Force hardware acceleration for smooth animations */
+  [class*="motion"] {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+  }
+  
+  /* Preserve background animation durations */
+  .fixed [class*="motion"],
+  .fixed [class*="absolute"] {
+    animation-duration: inherit !important;
+    transition-duration: inherit !important;
+  }
 }
