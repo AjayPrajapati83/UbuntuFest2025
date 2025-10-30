@@ -47,8 +47,8 @@ export default function HeroSection() {
         <div className="absolute left-0 right-0 pointer-events-none" style={{ top: '120px', height: '500px', zIndex: -1 }}>
           {elements.map((element, index) => {
             // Adjust positioning to avoid button overlap and heading
-            const leftPositions = [8, 12, 88, 92, 50]; // Spread out more, avoid center buttons
-            const topPositions = [25, 70, 30, 75, 15]; // Positioned below heading, around buttons
+            const leftPositions = [8, 12, 88, 92, 75]; // Move space icon to right side, away from center
+            const topPositions = [25, 70, 30, 75, 20]; // Positioned below heading, around buttons
             
             return (
               <motion.div
