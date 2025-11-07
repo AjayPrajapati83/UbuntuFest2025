@@ -105,6 +105,19 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
           } as React.CSSProperties}
           onClick={(e) => e.stopPropagation()}
         >
+          {/* Close Button - Positioned outside scrollable area */}
+          <button
+            onClick={onClose}
+            className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all z-[10001] touch-manipulation active:scale-95 shadow-lg"
+            style={{
+              background: 'linear-gradient(135deg, #ff4444, #cc0000)',
+              boxShadow: '0 4px 12px rgba(255, 68, 68, 0.6), 0 0 0 3px rgba(255, 255, 255, 0.3)',
+            } as React.CSSProperties}
+            aria-label="Close dialog"
+          >
+            <X className="w-6 h-6 sm:w-7 sm:h-7" strokeWidth={3} />
+          </button>
+
           <div
             className="rounded-xl sm:rounded-2xl overflow-hidden border-2 shadow-2xl"
             style={{
@@ -120,19 +133,6 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
                 WebkitOverflowScrolling: 'touch',
               } as React.CSSProperties}
             >
-              {/* Close Button */}
-              <button
-                onClick={onClose}
-                className="absolute top-3 right-3 sm:top-4 sm:right-4 w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/10 transition-all z-50 touch-manipulation active:scale-95"
-                style={{
-                  background: 'rgba(0, 0, 0, 0.4)',
-                  backdropFilter: 'blur(10px)',
-                  WebkitBackdropFilter: 'blur(10px)',
-                } as React.CSSProperties}
-                aria-label="Close dialog"
-              >
-                <X className="w-5 h-5" />
-              </button>
 
               {/* Header */}
               <div
