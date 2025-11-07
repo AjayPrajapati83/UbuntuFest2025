@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { events, Event } from '@/data/events';
 import { getElementColor, getElementIcon } from '@/lib/utils';
 import { Sparkles, Users, User, Calendar, Info } from 'lucide-react';
@@ -9,9 +9,21 @@ import EventDialog from './EventDialog';
 
 export default function EventsSection() {
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedElement, setSelectedElement] = useState('all');
+  const [selectedEventCategory, setSelectedEventCategory] = useState('all');
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleEventClick = (event: Event) => {
     console.log('Event clicked:', event.name);
@@ -28,33 +40,29 @@ export default function EventsSection() {
   };
 
   const categories = ['All', 'Flagship', 'Large', 'Small'];
-  const elementFilters = [
+  const categoryFilters = [
     { name: 'All', value: 'all', icon: '⭐' },
-    { name: 'Air', value: 'air', icon: '💨' },
-    { name: 'Water', value: 'water', icon: '💧' },
-    { name: 'Earth', value: 'earth', icon: '🌍' },
-    { name: 'Fire', value: 'fire', icon: '🔥' },
-    { name: 'Space', value: 'space', icon: '🚀' },
+    { name: 'Online Games', value: 'Online Games', icon: '🎮' },
+    { name: 'Performing Arts', value: 'Performing Arts', icon: '🎭' },
+    { name: 'Creative Challenges', value: 'Creative Challenges', icon: '🧩' },
+    { name: 'Fine Arts', value: 'Fine Arts', icon: '🎨' },
+    { name: 'Sports', value: 'Sports', icon: '⚽' },
+    { name: 'Digital/Media', value: 'Digital/Media', icon: '📱' },
+    { name: 'Literary Arts', value: 'Literary Arts', icon: '📚' },
   ];
 
   const filteredEvents = events.filter(event => {
-    const categoryMatch = selectedCategory === 'All' || event.eventType === selectedCategory;
-    const elementMatch = selectedElement === 'all' || event.element === selectedElement;
-    return categoryMatch && elementMatch;
+    const typeMatch = selectedCategory === 'All' || event.eventType === selectedCategory;
+    const categoryMatch = selectedEventCategory === 'all' || event.category === selectedEventCategory;
+    return typeMatch && categoryMatch;
   });
 
   return (
     <section id="events" className="section-padding relative">
       <div className="container-custom">
         {/* Section Header */}
-        <motion.div
-          className="text-center mb-16 relative"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.h2
+        <div className="text-center mb-16 relative">
+          <h2
             className="text-3xl sm:text-5xl md:text-6xl font-bold mb-4 relative"
             style={{
               backgroundSize: '200% auto',
@@ -65,26 +73,20 @@ export default function EventsSection() {
               <span className="gradient-text whitespace-nowrap">Elemental Events</span>
               <span className="text-2xl sm:text-4xl md:text-5xl">💧</span>
             </div>
-          </motion.h2>
+          </h2>
           <p className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto">
             Dive into the flow of creativity and competition. Each event embodies the essence of the five elements.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Element Filters */}
-        <motion.div
-          className="flex flex-wrap justify-center gap-3 mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-        >
-          {elementFilters.map((filter) => (
+        {/* Category Filters */}
+        <div className="flex flex-wrap justify-center gap-3 mb-8 max-w-4xl mx-auto">
+          {categoryFilters.map((filter) => (
             <button
               key={filter.value}
-              onClick={() => setSelectedElement(filter.value)}
-              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                selectedElement === filter.value
+              onClick={() => setSelectedEventCategory(filter.value)}
+              className={`px-5 py-2.5 rounded-full font-semibold transition-all duration-300 text-sm sm:text-base whitespace-nowrap ${
+                selectedEventCategory === filter.value
                   ? 'bg-gradient-to-r from-water-500 to-water-600 text-white shadow-lg shadow-water-500/30'
                   : 'glass-effect text-white/70 hover:text-white'
               }`}
@@ -93,16 +95,10 @@ export default function EventsSection() {
               {filter.name}
             </button>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Category Filters */}
-        <motion.div
-          className="flex flex-wrap justify-center gap-3 mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-        >
+        {/* Event Type Filters */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map((category) => (
             <button
               key={category}
@@ -116,7 +112,7 @@ export default function EventsSection() {
               {category}
             </button>
           ))}
-        </motion.div>
+        </div>
 
         {/* Events Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -211,13 +207,9 @@ export default function EventsSection() {
 
         {/* No Results */}
         {filteredEvents.length === 0 && (
-          <motion.div
-            className="text-center py-20"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
+          <div className="text-center py-20">
             <p className="text-2xl text-white/50">No events found for the selected filters</p>
-          </motion.div>
+          </div>
         )}
       </div>
 

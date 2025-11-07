@@ -8,13 +8,26 @@ import Image from 'next/image';
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
+    
+    window.addEventListener('resize', checkMobile);
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const navItems = [
@@ -107,31 +120,22 @@ export default function Navigation() {
 
       {/* Mobile Menu */}
       {isOpen && (
-      <motion.div
-        className="md:hidden overflow-hidden"
-        initial={{ height: 0, opacity: 0 }}
-        animate={{ height: 'auto', opacity: 1 }}
-        exit={{ height: 0, opacity: 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <div className="glass-effect-strong border-t border-white/10">
-          <div className="px-4 py-6 space-y-4">
-            {navItems.map((item, index) => (
-              <motion.button
-                key={item.name}
-                onClick={() => scrollToSection(item.href)}
-                className="flex items-center space-x-3 text-white/80 hover:text-white transition-colors w-full text-left py-2"
-                initial={{ x: -50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <item.icon className="w-5 h-5" />
-                <span>{item.name}</span>
-              </motion.button>
-            ))}
+        <div className="md:hidden overflow-hidden">
+          <div className="glass-effect-strong border-t border-white/10">
+            <div className="px-4 py-6 space-y-4">
+              {navItems.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.href)}
+                  className="flex items-center space-x-3 text-white/80 hover:text-white transition-colors w-full text-left py-2"
+                >
+                  <item.icon className="w-5 h-5" />
+                  <span>{item.name}</span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
-      </motion.div>
       )}
     </motion.nav>
   );

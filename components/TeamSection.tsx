@@ -15,6 +15,7 @@ interface TeamCategory {
 
 export default function TeamSection() {
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
   
   // Generate fire particles once to avoid hydration mismatch
   const fireParticles = useMemo(() => 
@@ -31,6 +32,16 @@ export default function TeamSection() {
   
   useEffect(() => {
     setMounted(true);
+    
+    // Detect mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
   const teamStructure: TeamCategory[] = [
     {
@@ -157,42 +168,66 @@ export default function TeamSection() {
               {/* Members Grid */}
               <div className={`flex flex-wrap justify-center gap-x-48 gap-y-12 ${category.members.length === 4 ? 'max-w-7xl mx-auto' : 'max-w-6xl mx-auto'}`}>
                 {category.members.map((member, memberIndex) => (
-                  <motion.div
-                    key={`${category.title}-${memberIndex}`}
-                    className="group"
-                    initial={{ opacity: 1, scale: 1 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                  >
-                    {/* Card Container */}
-                    <motion.div
-                      className="flex flex-col items-center"
-                      whileHover={{ y: -10 }}
+                  isMobile ? (
+                    // Mobile: No animations for better performance
+                    <div
+                      key={`${category.title}-${memberIndex}`}
+                      className="group"
                     >
-                      {/* Image Card */}
-                      <motion.div
-                        className="glass-effect-strong rounded-2xl p-8 border-2 border-white/20 hover:border-fire-500/60 transition-all duration-300 relative overflow-hidden mb-5"
-                        whileHover={{
-                          boxShadow: '0 0 30px rgba(255, 87, 34, 0.4)',
-                        }}
-                      >
-                        {/* Placeholder Image */}
-                        <div className="w-56 h-56 rounded-xl bg-gradient-to-br from-fire-500/30 to-water-500/30 flex items-center justify-center relative overflow-hidden">
-                          <User className="w-28 h-28 text-white/40" />
-                          
-                          {/* Static Gradient Overlay */}
-                          <div
-                            className="absolute inset-0 bg-gradient-to-br from-fire-500/20 to-transparent opacity-40"
-                          />
+                      <div className="flex flex-col items-center">
+                        {/* Image Card */}
+                        <div className="glass-effect-strong rounded-2xl p-8 border-2 border-white/20 transition-all duration-300 relative overflow-hidden mb-5">
+                          {/* Placeholder Image */}
+                          <div className="w-56 h-56 rounded-xl bg-gradient-to-br from-fire-500/30 to-water-500/30 flex items-center justify-center relative overflow-hidden">
+                            <User className="w-28 h-28 text-white/40" />
+                            
+                            {/* Static Gradient Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-fire-500/20 to-transparent opacity-40" />
+                          </div>
                         </div>
-                      </motion.div>
 
-                      {/* Member Name */}
-                      <p className="text-lg font-semibold text-white text-center">
-                        {member.name}
-                      </p>
+                        {/* Member Name */}
+                        <p className="text-lg font-semibold text-white text-center">
+                          {member.name}
+                        </p>
+                      </div>
+                    </div>
+                  ) : (
+                    // Desktop: Keep animations
+                    <motion.div
+                      key={`${category.title}-${memberIndex}`}
+                      className="group"
+                      initial={{ opacity: 1, scale: 1 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                    >
+                      <motion.div
+                        className="flex flex-col items-center"
+                        whileHover={{ y: -10 }}
+                      >
+                        {/* Image Card */}
+                        <motion.div
+                          className="glass-effect-strong rounded-2xl p-8 border-2 border-white/20 hover:border-fire-500/60 transition-all duration-300 relative overflow-hidden mb-5"
+                          whileHover={{
+                            boxShadow: '0 0 30px rgba(255, 87, 34, 0.4)',
+                          }}
+                        >
+                          {/* Placeholder Image */}
+                          <div className="w-56 h-56 rounded-xl bg-gradient-to-br from-fire-500/30 to-water-500/30 flex items-center justify-center relative overflow-hidden">
+                            <User className="w-28 h-28 text-white/40" />
+                            
+                            {/* Static Gradient Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-fire-500/20 to-transparent opacity-40" />
+                          </div>
+                        </motion.div>
+
+                        {/* Member Name */}
+                        <p className="text-lg font-semibold text-white text-center">
+                          {member.name}
+                        </p>
+                      </motion.div>
                     </motion.div>
-                  </motion.div>
+                  )
                 ))}
               </div>
             </div>

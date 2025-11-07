@@ -79,51 +79,30 @@ export default function HeroSection() {
         )}
 
         {/* Main Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="mb-8 relative z-10"
-        >
-          <motion.h1
-            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold mb-4 elemental-text-shadow"
-          >
+        <div className="mb-8 relative z-10">
+          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold mb-4 elemental-text-shadow">
             <span className="text-[#FF1744]">U</span>
             <span className="text-white">B</span>
             <span className="text-[#FFD600]">U</span>
             <span className="text-white">NT</span>
             <span className="text-[#00E5CC]">U</span>
-          </motion.h1>
+          </h1>
 
-          <motion.div
-            className="text-3xl sm:text-4xl md:text-5xl font-light text-white/90 flex items-center justify-center gap-4 flex-wrap"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
-          >
+          <div className="text-3xl sm:text-4xl md:text-5xl font-light text-white/90 flex items-center justify-center gap-4 flex-wrap">
             <span className="font-bold">2025</span>
             <span className="text-white/40">|</span>
-            <motion.div
+            <div
               key={currentElement}
               className={`flex items-center gap-2 ${elements[currentElement].color}`}
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -20, opacity: 0 }}
-              transition={{ duration: 0.5 }}
             >
               <span className="text-4xl">{elements[currentElement].emoji}</span>
               <span>{elements[currentElement].name}</span>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+            </div>
+          </div>
+        </div>
 
         {/* Subtitle - Panchtatva */}
-        <motion.div
-          className="mb-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 1 }}
-        >
+        <div className="mb-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 text-white/80">
             पंचतत्व - Panchtatva
           </h2>
@@ -134,15 +113,10 @@ export default function HeroSection() {
             <span className="fire-text font-semibold">Fire</span> ignites passion, and{' '}
             <span className="space-text font-semibold">Space</span> holds infinite possibilities
           </p>
-        </motion.div>
+        </div>
 
         {/* Event Details */}
-        <motion.div
-          className="mb-12 flex flex-wrap justify-center gap-6 text-white/60"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.8 }}
-        >
+        <div className="mb-12 flex flex-wrap justify-center gap-6 text-white/60">
           <div className="glass-effect px-6 py-3 rounded-full">
             <span className="font-semibold">📅 Date:</span> 12th & 13th of December 2025
           </div>
@@ -152,131 +126,143 @@ export default function HeroSection() {
           <div className="glass-effect px-6 py-3 rounded-full">
             <span className="font-semibold">🎯 Events:</span> 28+ Competitions
           </div>
-        </motion.div>
+        </div>
 
         {/* CTA Buttons */}
-        <motion.div
-          className="flex gap-4 sm:gap-6 justify-center flex-wrap mb-16 relative z-20"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-        >
-          <motion.button
-            className="relative overflow-hidden px-8 py-4 text-lg font-bold rounded-full text-white shadow-2xl group"
-            style={{
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
-            }}
-            whileHover={{
-              scale: 1.08,
-              boxShadow: '0 20px 40px rgba(102, 126, 234, 0.4), 0 0 30px rgba(246, 147, 251, 0.3)',
-            }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => document.querySelector('#events')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-              animate={{
-                x: ['-200%', '200%'],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: 'linear',
-              }}
-            />
-            <span className="relative z-10 flex items-center gap-2">
-              <span className="text-2xl">🎪</span>
-              <span>Explore Events</span>
-            </span>
-          </motion.button>
+        <div className="flex gap-4 sm:gap-6 justify-center flex-wrap mb-16 relative z-20">
+          {isMobile ? (
+            // Mobile: Simple buttons without animations
+            <>
+              <button
+                className="px-8 py-4 text-lg font-bold rounded-full text-white shadow-2xl active:scale-95 transition-transform"
+                style={{
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
+                }}
+                onClick={() => document.querySelector('#events')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                <span className="flex items-center gap-2">
+                  <span className="text-2xl">🎪</span>
+                  <span>Explore Events</span>
+                </span>
+              </button>
 
-          <motion.button
-            className="relative overflow-hidden px-8 py-4 text-lg font-bold rounded-full text-white shadow-2xl backdrop-blur-sm border-2 group"
-            style={{
-              background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(59, 130, 246, 0.3))',
-              borderColor: 'rgba(147, 197, 253, 0.5)',
-            }}
-            whileHover={{
-              scale: 1.08,
-              background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.4), rgba(59, 130, 246, 0.5))',
-              borderColor: 'rgba(147, 197, 253, 0.8)',
-              boxShadow: '0 20px 40px rgba(56, 189, 248, 0.3), 0 0 30px rgba(59, 130, 246, 0.2)',
-            }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => document.querySelector('#schedule')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
-              animate={{
-                x: ['-200%', '200%'],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: 'linear',
-              }}
-            />
-            <span className="relative z-10 flex items-center gap-2">
-              <span className="text-2xl">📅</span>
-              <span>View Schedule</span>
-            </span>
-          </motion.button>
-        </motion.div>
+              <button
+                className="px-8 py-4 text-lg font-bold rounded-full text-white shadow-2xl backdrop-blur-sm border-2 active:scale-95 transition-transform"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(59, 130, 246, 0.3))',
+                  borderColor: 'rgba(147, 197, 253, 0.5)',
+                }}
+                onClick={() => document.querySelector('#schedule')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                <span className="flex items-center gap-2">
+                  <span className="text-2xl">📅</span>
+                  <span>View Schedule</span>
+                </span>
+              </button>
+            </>
+          ) : (
+            // Desktop: Keep animations
+            <>
+              <motion.button
+                className="relative overflow-hidden px-8 py-4 text-lg font-bold rounded-full text-white shadow-2xl group"
+                style={{
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
+                }}
+                whileHover={{
+                  scale: 1.08,
+                  boxShadow: '0 20px 40px rgba(102, 126, 234, 0.4), 0 0 30px rgba(246, 147, 251, 0.3)',
+                }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => document.querySelector('#events')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  animate={{
+                    x: ['-200%', '200%'],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: 'linear',
+                  }}
+                />
+                <span className="relative z-10 flex items-center gap-2">
+                  <span className="text-2xl">🎪</span>
+                  <span>Explore Events</span>
+                </span>
+              </motion.button>
+
+              <motion.button
+                className="relative overflow-hidden px-8 py-4 text-lg font-bold rounded-full text-white shadow-2xl backdrop-blur-sm border-2 group"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(59, 130, 246, 0.3))',
+                  borderColor: 'rgba(147, 197, 253, 0.5)',
+                }}
+                whileHover={{
+                  scale: 1.08,
+                  background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.4), rgba(59, 130, 246, 0.5))',
+                  borderColor: 'rgba(147, 197, 253, 0.8)',
+                  boxShadow: '0 20px 40px rgba(56, 189, 248, 0.3), 0 0 30px rgba(59, 130, 246, 0.2)',
+                }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => document.querySelector('#schedule')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+                  animate={{
+                    x: ['-200%', '200%'],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: 'linear',
+                  }}
+                />
+                <span className="relative z-10 flex items-center gap-2">
+                  <span className="text-2xl">📅</span>
+                  <span>View Schedule</span>
+                </span>
+              </motion.button>
+            </>
+          )}
+        </div>
 
         {/* About Ubuntu Section */}
-        <motion.div
-          className="mt-20 mb-16 max-w-4xl mx-auto"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.4, duration: 0.8 }}
-        >
-          <motion.h3 
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 gradient-text"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.5, duration: 0.6 }}
-          >
+        <div className="mt-20 mb-16 max-w-4xl mx-auto">
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 gradient-text">
             About Ubuntu
-          </motion.h3>
+          </h3>
           
           <div className="glass-effect-strong rounded-2xl p-6 sm:p-8 md:p-10 text-left space-y-4">
-            <motion.p 
-              className="text-base sm:text-lg text-white/80 leading-relaxed"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.6, duration: 0.6 }}
-            >
+            <p className="text-base sm:text-lg text-white/80 leading-relaxed">
               The annual Fest at Patkar-Varde College - <span className="gradient-text font-semibold">&apos;Ubuntu&apos;</span> serves as a vibrant celebration,
               encompassing a myriad of activities and opportunities for students to showcase their unique talents and abilities.
               More than just a fest, it stands as a cornerstone in the holistic development of students, offering a respite from the usual academic routine and evaluations.
-            </motion.p>
+            </p>
 
-            <motion.p 
-              className="text-base sm:text-lg text-white/80 leading-relaxed"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.8, duration: 0.6 }}
-            >
+            <p className="text-base sm:text-lg text-white/80 leading-relaxed">
               This fest isn&apos;t merely about entertainment; it&apos;s a platform for students to immerse themselves in various activities that foster personal growth.
               It focuses on enhancing students&apos; personalities, nurturing teamwork abilities, stimulating creativity, refining communication skills, and honing management expertise.
-            </motion.p>
+            </p>
           </div>
-        </motion.div>
+        </div>
 
         {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          animate={{
-            y: [0, 10, 0],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <ChevronDown className="w-8 h-8 text-white/40" />
-        </motion.div>
+        {!isMobile && (
+          <motion.div
+            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+            animate={{
+              y: [0, 10, 0],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <ChevronDown className="w-8 h-8 text-white/40" />
+          </motion.div>
+        )}
       </div>
     </section>
   );
