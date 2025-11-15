@@ -14,7 +14,7 @@ export default function HeroSection() {
     { name: 'Water', color: 'text-water-300', emoji: '💧' },
     { name: 'Earth', color: 'text-earth-300', emoji: '🌍' },
     { name: 'Fire', color: 'text-fire-300', emoji: '🔥' },
-    { name: 'Space', color: 'text-space-400', emoji: '🚀' },
+    { name: 'Space', color: 'text-cyan-300', emoji: '🚀' },
   ];
 
   useEffect(() => {
