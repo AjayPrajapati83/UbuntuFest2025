@@ -1,11 +1,11 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { User } from 'lucide-react';
-import { useState, useEffect, useMemo } from 'react';
+import Image from 'next/image';
 
 interface TeamMember {
   name: string;
+  image?: string;
 }
 
 interface TeamCategory {
@@ -14,90 +14,63 @@ interface TeamCategory {
 }
 
 export default function TeamSection() {
-  const [mounted, setMounted] = useState(false);
-  const [isMobile, setIsMobile] = useState(true);
-  
-  // Generate fire particles once to avoid hydration mismatch
-  const fireParticles = useMemo(() => 
-    Array.from({ length: 15 }).map(() => ({
-      width: Math.random() * 150 + 50,
-      height: Math.random() * 150 + 50,
-      left: Math.random() * 100,
-      top: Math.random() * 100,
-      opacity: Math.random() * 0.2 + 0.1,
-      duration: Math.random() * 4 + 3,
-      delay: Math.random() * 2,
-    })), []
-  );
-  
-  useEffect(() => {
-    setMounted(true);
-    
-    // Detect mobile
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
   const teamStructure: TeamCategory[] = [
     {
       title: 'CL',
       members: [
-        { name: 'Member Name 1' },
-        { name: 'Member Name 2' },
+        { name: 'Shree Pillay', image: '/team/shree pillay.jpg' },
+        { name: 'Aahna Redkar', image: '/team/Aahna Redkar.jpg' },
       ],
     },
     {
       title: 'ACL',
       members: [
-        { name: 'Member Name 1' },
-        { name: 'Member Name 2' },
+        { name: 'Gaurang Thakur', image: '/team/Gaurang Thakur .jpg' },
+        { name: 'Sanskruti Sawant', image: '/team/Sankruti Sawant.jpg' },
       ],
     },
     {
       title: 'Registration Head',
       members: [
-        { name: 'Member Name 1' },
-        { name: 'Member Name 2' },
+        { name: 'Ajay Prajapati', image: '/team/Ajay Prajapati.jpg' },
+        { name: 'Jyoti Bhaskar', image: '/team/Jyoti Bhaskar.jpg' },
       ],
     },
     {
       title: 'Events Head',
       members: [
-        { name: 'Member Name 1' },
-        { name: 'Member Name 2' },
+        { name: 'Pratham Shinde', image: '/team/Pratham Shinde.jpg' },
+        { name: 'Bhoomika karki', image: '/team/Bhoomika karki.jpg' },
       ],
     },
     {
       title: 'Marketing Head',
       members: [
-        { name: 'Member Name 1' },
-        { name: 'Member Name 2' },
+        { name: 'Rupam Chorghe', image: '/team/Rupam Chorghe.jpg' },
+        { name: 'Rutva Kagdada', image: '/team/Rutva Kagdada.jpg' },
+        { name: 'Shankar' },
       ],
     },
     {
       title: 'Creative Head',
       members: [
-        { name: 'Member Name 1' },
-        { name: 'Member Name 2' },
+        { name: 'Shubham Divekar', image: '/team/Shubham Divekar.jpg' },
+        { name: 'Disha Sawant', image: '/team/Disha Sawant.jpg' },
+        { name: 'Devarsh Mohite', image: '/team/Devarsh Mohite.jpg' },
       ],
     },
     {
       title: 'PR Head',
       members: [
-        { name: 'Member Name 1' },
-        { name: 'Member Name 2' },
+        { name: 'Surbhi Thakur', image: '/team/Surbhi Thakur.jpg' },
+        { name: 'Maitrayee Gawde', image: '/team/Maitrayee Gawde.jpg' },
       ],
     },
     {
       title: 'Social Media Head',
       members: [
-        { name: 'Member Name 1' },
-        { name: 'Member Name 2' },
+        { name: 'Tanmay Mane', image: '/team/Tanmay Mane .jpg' },
+        { name: 'Adarsh Umbarsada', image: '/team/Adarsh Umbarsada.jpg' },
       ],
     },
     {
@@ -110,10 +83,10 @@ export default function TeamSection() {
     {
       title: 'Operations and Logistics Head',
       members: [
-        { name: 'Member Name 1' },
-        { name: 'Member Name 2' },
-        { name: 'Member Name 3' },
-        { name: 'Member Name 4' },
+        { name: 'Aareen Yadav', image: '/team/Aareen Yadav.jpg' },
+        { name: 'Ishwari Agaskar', image: '/team/Ishwari Agaskar.jpg' },
+        { name: 'Mandar Sood', image: '/team/Mandar Sood.jpg' },
+        { name: 'Yash Amate' },
       ],
     },
   ];
@@ -136,29 +109,11 @@ export default function TeamSection() {
           </p>
         </div>
 
-        {/* Fire Background Effect - Static for performance */}
-        {mounted && (
-          <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
-            {fireParticles.slice(0, 5).map((particle, i) => (
-              <div
-                key={`fire-bg-${i}`}
-                className="absolute rounded-full"
-                style={{
-                  width: `${particle.width}px`,
-                  height: `${particle.height}px`,
-                  left: `${particle.left}%`,
-                  top: `${particle.top}%`,
-                  background: `radial-gradient(circle, rgba(255, 87, 34, ${particle.opacity}), transparent)`,
-                  filter: 'blur(50px)',
-                } as React.CSSProperties}
-              />
-            ))}
-          </div>
-        )}
+
 
         {/* Team Categories */}
         <div className="space-y-16 relative z-10">
-          {teamStructure.map((category, categoryIndex) => (
+          {teamStructure.map((category) => (
             <div key={category.title}>
               {/* Category Title */}
               <h3 className="text-3xl md:text-4xl font-bold text-center mb-8 gradient-text">
@@ -168,66 +123,38 @@ export default function TeamSection() {
               {/* Members Grid */}
               <div className={`flex flex-wrap justify-center gap-x-48 gap-y-12 ${category.members.length === 4 ? 'max-w-7xl mx-auto' : 'max-w-6xl mx-auto'}`}>
                 {category.members.map((member, memberIndex) => (
-                  isMobile ? (
-                    // Mobile: No animations for better performance
-                    <div
-                      key={`${category.title}-${memberIndex}`}
-                      className="group"
-                    >
-                      <div className="flex flex-col items-center">
-                        {/* Image Card */}
-                        <div className="glass-effect-strong rounded-2xl p-8 border-2 border-white/20 transition-all duration-300 relative overflow-hidden mb-5">
-                          {/* Placeholder Image */}
-                          <div className="w-56 h-56 rounded-xl bg-gradient-to-br from-fire-500/30 to-water-500/30 flex items-center justify-center relative overflow-hidden">
-                            <User className="w-28 h-28 text-white/40" />
-                            
-                            {/* Static Gradient Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-fire-500/20 to-transparent opacity-40" />
-                          </div>
-                        </div>
-
-                        {/* Member Name */}
-                        <p className="text-lg font-semibold text-white text-center">
-                          {member.name}
-                        </p>
+                  <div
+                    key={`${category.title}-${memberIndex}`}
+                    className="group flex flex-col items-center hover:-translate-y-2 transition-transform duration-300"
+                  >
+                    {/* Image Card */}
+                    <div className="glass-effect-strong rounded-2xl p-8 border-2 border-white/20 hover:border-fire-500/60 transition-colors duration-300 relative overflow-hidden mb-5">
+                      {/* Team Member Image */}
+                      <div className="w-56 h-56 rounded-xl bg-gradient-to-br from-fire-500/30 to-water-500/30 flex items-center justify-center relative overflow-hidden">
+                        {member.image ? (
+                          <Image 
+                            src={member.image} 
+                            alt={member.name}
+                            width={224}
+                            height={224}
+                            className="w-full h-full object-cover rounded-xl"
+                            loading="lazy"
+                            quality={75}
+                          />
+                        ) : (
+                          <User className="w-28 h-28 text-white/40" />
+                        )}
+                        
+                        {/* Static Gradient Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-fire-500/20 to-transparent opacity-40 pointer-events-none" />
                       </div>
                     </div>
-                  ) : (
-                    // Desktop: Keep animations
-                    <motion.div
-                      key={`${category.title}-${memberIndex}`}
-                      className="group"
-                      initial={{ opacity: 1, scale: 1 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                    >
-                      <motion.div
-                        className="flex flex-col items-center"
-                        whileHover={{ y: -10 }}
-                      >
-                        {/* Image Card */}
-                        <motion.div
-                          className="glass-effect-strong rounded-2xl p-8 border-2 border-white/20 hover:border-fire-500/60 transition-all duration-300 relative overflow-hidden mb-5"
-                          whileHover={{
-                            boxShadow: '0 0 30px rgba(255, 87, 34, 0.4)',
-                          }}
-                        >
-                          {/* Placeholder Image */}
-                          <div className="w-56 h-56 rounded-xl bg-gradient-to-br from-fire-500/30 to-water-500/30 flex items-center justify-center relative overflow-hidden">
-                            <User className="w-28 h-28 text-white/40" />
-                            
-                            {/* Static Gradient Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-fire-500/20 to-transparent opacity-40" />
-                          </div>
-                        </motion.div>
 
-                        {/* Member Name */}
-                        <p className="text-lg font-semibold text-white text-center">
-                          {member.name}
-                        </p>
-                      </motion.div>
-                    </motion.div>
-                  )
+                    {/* Member Name */}
+                    <p className="text-lg font-semibold text-white text-center">
+                      {member.name}
+                    </p>
+                  </div>
                 ))}
               </div>
             </div>
