@@ -24,6 +24,11 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
 
   useEffect(() => {
     console.log('EventDialog state:', { mounted, isOpen, hasEvent: !!event });
+    if (event) {
+      console.log('Event data:', event);
+      console.log('Event rules:', event.rules);
+      console.log('Rules length:', event.rules?.length);
+    }
   }, [mounted, isOpen, event]);
 
   // Enhanced body scroll lock for mobile
@@ -219,11 +224,11 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
                     📋 Rules & Guidelines
                   </h3>
                   <div className="glass-effect rounded-lg p-3 sm:p-4">
-                    {event.rules.length > 0 ? (
-                      <ul className="space-y-1.5">
+                    {event.rules && event.rules.length > 0 ? (
+                      <ul className="space-y-2">
                         {event.rules.map((rule, index) => (
-                          <li key={index} className="text-sm sm:text-base text-white/70 flex items-start gap-2">
-                            <span className="text-white/50 mt-0.5">•</span>
+                          <li key={index} className="text-sm sm:text-base text-white/80 flex items-start gap-2.5 leading-relaxed">
+                            <span className="font-bold mt-0.5" style={{ color: elementColor.primary }}>•</span>
                             <span className="flex-1">{rule}</span>
                           </li>
                         ))}

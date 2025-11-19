@@ -162,7 +162,7 @@ export default function EventsSection() {
                 </p>
 
                 {/* Description */}
-                <p className="text-sm text-white/80 mb-4 line-clamp-3">
+                <p className="text-sm text-white/80 mb-4 line-clamp-2">
                   {event.description}
                 </p>
 
@@ -177,7 +177,7 @@ export default function EventsSection() {
                     {event.soloPrice ? 'Solo' : 'Group'}
                   </span>
                   <span className="text-xs px-3 py-1 rounded-full bg-white/10 text-white">
-                    {event.category}
+                    {event.eventType}
                   </span>
                 </div>
 

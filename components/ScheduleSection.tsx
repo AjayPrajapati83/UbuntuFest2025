@@ -169,54 +169,78 @@ export default function ScheduleSection() {
 
               {/* Events List */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-0 md:pl-8">
-                {schedule.events.map((event, eventIndex) => (
-                  <div
-                    key={event.name}
-                    className="glass-effect rounded-xl p-4 border transition-all duration-300 group"
-                    style={{
-                      borderColor: 'rgba(121, 85, 72, 0.2)',
-                    } as React.CSSProperties}
-                  >
-                    <div className="flex items-start gap-3 mb-3">
-                      <div className="text-2xl">
-                        {event.element === 'air' && '💨'}
-                        {event.element === 'water' && '💧'}
-                        {event.element === 'earth' && '🌱'}
-                        {event.element === 'fire' && '🔥'}
-                        {event.element === 'space' && '🚀'}
+                {schedule.events.map((event, eventIndex) => {
+                  // Get element-specific colors
+                  const getElementColor = (element: string) => {
+                    switch(element) {
+                      case 'fire': return { border: 'rgba(239, 68, 68, 0.3)', text: '#FCA5A5', bg: 'rgba(239, 68, 68, 0.2)' };
+                      case 'water': return { border: 'rgba(59, 130, 246, 0.3)', text: '#93C5FD', bg: 'rgba(59, 130, 246, 0.2)' };
+                      case 'earth': return { border: 'rgba(121, 85, 72, 0.3)', text: '#A0826D', bg: 'rgba(121, 85, 72, 0.2)' };
+                      case 'air': return { border: 'rgba(156, 163, 175, 0.3)', text: '#D1D5DB', bg: 'rgba(156, 163, 175, 0.2)' };
+                      case 'space': return { border: 'rgba(139, 92, 246, 0.3)', text: '#C4B5FD', bg: 'rgba(139, 92, 246, 0.2)' };
+                      default: return { border: 'rgba(121, 85, 72, 0.2)', text: '#A0826D', bg: 'rgba(121, 85, 72, 0.2)' };
+                    }
+                  };
+                  
+                  const elementColors = getElementColor(event.element);
+                  
+                  return (
+                    <div
+                      key={event.name}
+                      className="glass-effect rounded-xl p-4 border transition-all duration-300 group hover:shadow-lg"
+                      style={{
+                        borderColor: elementColors.border,
+                      } as React.CSSProperties}
+                    >
+                      <div className="flex items-start gap-3 mb-3">
+                        <div className="text-2xl">
+                          {event.element === 'air' && '💨'}
+                          {event.element === 'water' && '💧'}
+                          {event.element === 'earth' && '🌱'}
+                          {event.element === 'fire' && '🔥'}
+                          {event.element === 'space' && '🚀'}
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="font-bold text-white group-hover:text-earth-300 transition-colors">
+                            {event.name}
+                          </h4>
+                          <p className="text-xs text-white/50 italic line-clamp-1">{event.themedName}</p>
+                        </div>
                       </div>
-                      <div className="flex-1">
-                        <h4 className="font-bold text-white group-hover:text-earth-300 transition-colors">
-                          {event.name}
-                        </h4>
-                        <p className="text-xs text-white/50 italic">{event.themedName}</p>
-                      </div>
-                    </div>
 
-                    <div className="space-y-2 text-sm">
-                      <div className="flex items-center gap-2 text-white/60">
-                        <Clock className="w-4 h-4" />
-                        <span>Time: TBA</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-white/60">
-                        <MapPin className="w-4 h-4" />
-                        <span>Venue: TBA</span>
-                      </div>
-                      <div className="flex items-center justify-between pt-2 border-t border-white/10">
-                        <span className="text-earth-300 font-semibold">{event.price}</span>
-                        <span 
-                          className="text-xs px-2 py-1 rounded-full"
-                          style={{
-                            backgroundColor: 'rgba(121, 85, 72, 0.2)',
-                            color: '#A0826D',
-                          }}
-                        >
-                          {event.eventType}
-                        </span>
+                      <div className="space-y-2 text-sm">
+                        <div className="flex items-center gap-2 text-white/60">
+                          <Clock className="w-4 h-4" />
+                          <span>Time: TBA</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-white/60">
+                          <MapPin className="w-4 h-4" />
+                          <span className="line-clamp-1">
+                            {event.name === '1 vs 1 Football' ? 'Behind canteen' : 
+                             event.name === 'IPL Auction' ? 'Classroom' : 'TBA'}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between pt-2 border-t border-white/10">
+                          <span 
+                            className="font-semibold"
+                            style={{ color: elementColors.text }}
+                          >
+                            {event.soloPrice || event.groupPrice || event.price}
+                          </span>
+                          <span 
+                            className="text-xs px-2 py-1 rounded-full"
+                            style={{
+                              backgroundColor: elementColors.bg,
+                              color: elementColors.text,
+                            }}
+                          >
+                            {event.eventType}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           ))}
