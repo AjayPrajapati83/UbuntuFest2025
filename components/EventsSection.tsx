@@ -42,13 +42,11 @@ export default function EventsSection() {
   const categories = ['All', 'Flagship', 'Large', 'Small'];
   const categoryFilters = [
     { name: 'All', value: 'all', icon: '⭐' },
-    { name: 'Online Games', value: 'Online Games', icon: '🎮' },
     { name: 'Performing Arts', value: 'Performing Arts', icon: '🎭' },
-    { name: 'Creative Challenges', value: 'Creative Challenges', icon: '🧩' },
     { name: 'Fine Arts', value: 'Fine Arts', icon: '🎨' },
+    { name: 'Online Games', value: 'Online Games', icon: '🎮' },
     { name: 'Sports', value: 'Sports', icon: '⚽' },
-    { name: 'Digital/Media', value: 'Digital/Media', icon: '📱' },
-    { name: 'Literary Arts', value: 'Literary Arts', icon: '📚' },
+    { name: 'Creative Challenges', value: 'Creative Challenges', icon: '🧩' },
   ];
 
   const filteredEvents = events.filter(event => {

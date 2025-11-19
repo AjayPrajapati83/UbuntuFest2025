@@ -118,7 +118,7 @@ export const events: Event[] = [
   },
   {
     name: "Human Ludo",
-    themedName: "Panchtatva Prayaan",
+    themedName: "Human Ludo",
     price: "₹200",
     description: "A life-sized, interactive version of the classic board game Ludo.",
     rules: [
@@ -129,7 +129,7 @@ export const events: Event[] = [
       "Judges decision will be the final.",
       "Additional rules will be disclosed on the spot"
     ],
-    category: "Creative Challenges",
+    category: "Sports",
     day: 2,
     eventType: "Flagship",
     element: "water",
@@ -296,7 +296,7 @@ export const events: Event[] = [
       "Storyboard consists maximum of 12 photos.",
       "Participants must stay on campus throughout the shoot."
     ],
-    category: "Digital/Media",
+    category: "Creative Challenges",
     day: 1,
     eventType: "Large",
     element: "water",
@@ -305,7 +305,7 @@ export const events: Event[] = [
   {
     name: "Dance (Solo)",
     themedName: "AgniNritya - The Rhythmic Flow",
-    price: "₹550",
+    price: "₹50",
     description: "A solo dance performance where participants express a theme through rhythmic body movements.",
     rules: [
       "A group must consist of a minimum of 2 and maximum of 6 participants.",
@@ -323,7 +323,7 @@ export const events: Event[] = [
     day: 2,
     eventType: "Large",
     element: "fire",
-    soloPrice: "₹550"
+    soloPrice: "₹50"
   },
   {
     name: "Tote Bag Painting",
@@ -357,7 +357,7 @@ export const events: Event[] = [
       "Participants must write individually (no group entries).",
       "Submissions must be handwritten or typed (as per setup availability)."
     ],
-    category: "Literary Arts",
+    category: "Fine Arts",
     day: 2,
     eventType: "Large",
     element: "air",
@@ -456,7 +456,7 @@ export const events: Event[] = [
       "Language: English or Hindi.",
       "Offensive or copied content leads to disqualification."
     ],
-    category: "Literary Arts",
+    category: "Fine Arts",
     day: 1,
     eventType: "Small",
     element: "air",
@@ -500,7 +500,7 @@ export const events: Event[] = [
       "1. Create piracy free video on given theme and upload it in reel section in Instagram.",
       "2. you have to do a collaboration @ubuntu.pvc"
     ],
-    category: "Digital/Media",
+    category: "Creative Challenges",
     day: 1,
     eventType: "Small",
     element: "water",
