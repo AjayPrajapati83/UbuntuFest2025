@@ -398,7 +398,7 @@ export const events: Event[] = [
       "If the act requires sound effects or background audio, it must be submitted in advance."
     ],
     category: "Performing Arts",
-    day: 2,
+    day: 1,
     eventType: "Small",
     element: "fire",
     soloPrice: "₹50"
@@ -602,7 +602,7 @@ export const events: Event[] = [
       "Bidding time limit: 1 minute per round.",
       "venue : classroom",
       "Duo",
-      "Entry fee : 150"
+      "Entry fee : 100"
     ],
     category: "Creative Challenges",
     day: 1,
