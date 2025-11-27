@@ -48,7 +48,7 @@ export default function TeamSection() {
       members: [
         { name: 'Rupam Chorghe', image: '/team/Rupam Chorghe.jpg' },
         { name: 'Rutva Kagdada', image: '/team/Rutva Kagdada.jpg' },
-        { name: 'Shankar' },
+        { name: 'Shankar Lohatkar', image: '/team/Shankar Lohatkar.jpg' },
       ],
     },
     {
@@ -74,19 +74,20 @@ export default function TeamSection() {
       ],
     },
     {
-      title: 'Cultural Head',
-      members: [
-        { name: 'Member Name 1' },
-        { name: 'Member Name 2' },
-      ],
-    },
-    {
       title: 'Operations and Logistics Head',
       members: [
         { name: 'Aareen Yadav', image: '/team/Aareen Yadav.jpg' },
         { name: 'Ishwari Agaskar', image: '/team/Ishwari Agaskar.jpg' },
         { name: 'Mandar Sood', image: '/team/Mandar Sood.jpg' },
-        { name: 'Yash Amate' },
+        { name: 'Yash Amate', image: '/team/Yash Amate.jpg' },
+      ],
+    },
+    {
+      title: 'Special Contributors',
+      members: [
+        { name: 'Bhavesh Gamare', image: '/team/Bhavesh Gamare.jpg' },
+        { name: 'Prathmesh Jadhav', image: '/team/Prathmesh Jadhav.jpg' },
+        { name: 'Tanmay Gawankar', image: '/team/Tanmay Gawankar.jpg' },
       ],
     },
   ];
@@ -121,7 +122,7 @@ export default function TeamSection() {
               </h3>
 
               {/* Members Grid */}
-              <div className={`flex flex-wrap justify-center gap-x-48 gap-y-12 ${category.members.length === 4 ? 'max-w-7xl mx-auto' : 'max-w-6xl mx-auto'}`}>
+              <div className={`flex flex-wrap justify-center gap-x-12 gap-y-12 ${category.members.length === 4 ? 'max-w-7xl mx-auto' : category.members.length === 3 ? 'max-w-5xl mx-auto' : 'max-w-4xl mx-auto'}`}>
                 {category.members.map((member, memberIndex) => (
                   <div
                     key={`${category.title}-${memberIndex}`}

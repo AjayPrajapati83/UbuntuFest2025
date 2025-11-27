@@ -80,6 +80,27 @@ export default function HeroSection() {
 
         {/* Main Title */}
         <div className="mb-8 relative z-10">
+          {/* College Name */}
+          <div className="mb-6 space-y-2">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white/90 text-center">
+              Chikitsak Samuha&apos;s Sir Sitaram and Lady Shantabai Patkar College of Arts and Science
+            </h2>
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white/90 text-center">
+              and V. P. Varde College of Commerce and Economics, (Empowered Autonomous)
+            </h2>
+            <p className="text-sm sm:text-base md:text-lg text-white/70 text-center">
+              Swami Vivekananda Rd, Piramal Nagar, Goregaon West, Mumbai 400 104
+            </p>
+          </div>
+
+          {/* PRESENTS */}
+          <div className="mb-8">
+            <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#FF6B35] text-center tracking-wider">
+              PRESENTS
+            </p>
+          </div>
+
+          {/* UBUNTU Title */}
           <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold mb-4 elemental-text-shadow">
             <span className="text-[#FF1744]">U</span>
             <span className="text-white">B</span>

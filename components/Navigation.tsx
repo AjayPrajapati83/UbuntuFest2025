@@ -55,7 +55,7 @@ export default function Navigation() {
       transition={{ duration: 0.5 }}
     >
       <div className="container-custom px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
           <motion.div
             className="flex items-center space-x-3 cursor-pointer"
@@ -84,6 +84,23 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
+            {/* College Logo */}
+            <motion.div
+              className="relative w-12 h-12 md:w-14 md:h-14"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.1 }}
+            >
+              <Image 
+                src="/Logo PNG.png" 
+                alt="College Logo" 
+                width={56}
+                height={56}
+                className="w-full h-full object-contain"
+                priority
+              />
+            </motion.div>
+            
             {navItems.map((item, index) => (
               <motion.button
                 key={item.name}
@@ -107,14 +124,33 @@ export default function Navigation() {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <motion.button
-            className="md:hidden text-white p-2"
-            onClick={() => setIsOpen(!isOpen)}
-            whileTap={{ scale: 0.9 }}
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </motion.button>
+          {/* Mobile Right Section - College Logo + Menu Button */}
+          <div className="md:hidden flex items-center space-x-3">
+            {/* College Logo on Mobile */}
+            <motion.div
+              className="relative w-10 h-10"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              <Image 
+                src="/Logo PNG.png" 
+                alt="College Logo" 
+                width={40}
+                height={40}
+                className="w-full h-full object-contain"
+                priority
+              />
+            </motion.div>
+            
+            {/* Mobile Menu Button */}
+            <motion.button
+              className="text-white p-2"
+              onClick={() => setIsOpen(!isOpen)}
+              whileTap={{ scale: 0.9 }}
+            >
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </motion.button>
+          </div>
         </div>
       </div>
 
@@ -123,6 +159,17 @@ export default function Navigation() {
         <div className="md:hidden overflow-hidden">
           <div className="glass-effect-strong border-t border-white/10">
             <div className="px-4 py-6 space-y-4">
+              {/* College Logo in Mobile Menu */}
+              <div className="flex items-center justify-center pb-4 border-b border-white/10">
+                <Image 
+                  src="/Logo PNG.png" 
+                  alt="College Logo" 
+                  width={60}
+                  height={60}
+                  className="object-contain"
+                />
+              </div>
+              
               {navItems.map((item) => (
                 <button
                   key={item.name}

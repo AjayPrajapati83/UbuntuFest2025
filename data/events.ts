@@ -77,7 +77,7 @@ export const events: Event[] = [
     day: 2,
     eventType: "Flagship",
     element: "air",
-    groupPrice: "₹300"
+    groupPrice: "₹250"
   },
   {
     name: "Mock Stock",
@@ -91,7 +91,7 @@ export const events: Event[] = [
       "No collaborations or external devices allowed; disqualification if violated."
     ],
     category: "Online Games",
-    day: 2,
+    day: 1,
     eventType: "Flagship",
     element: "air",
     soloPrice: "₹100"
@@ -138,7 +138,7 @@ export const events: Event[] = [
   {
     name: "Dance (Group)",
     themedName: "AgniNritya - The Rhythmic Flow",
-    price: "₹300",
+    price: "₹250",
     description: "Join the group dance competition and groove to the music. Performances should be thematic and synchronized.",
     rules: [
       "A group must consist of a minimum of 2 and maximum of 6 participants.",
@@ -156,7 +156,7 @@ export const events: Event[] = [
     day: 2,
     eventType: "Flagship",
     element: "fire",
-    groupPrice: "₹300"
+    groupPrice: "₹250"
   },
   {
     name: "Singing (Solo)",
@@ -376,7 +376,7 @@ export const events: Event[] = [
       "Additional rules will be disclosed on the spot."
     ],
     category: "Sports",
-    day: 2,
+    day: 1,
     eventType: "Large",
     element: "air",
     soloPrice: "₹100"
@@ -585,7 +585,7 @@ export const events: Event[] = [
       "venue : Behind canteen"
     ],
     category: "Sports",
-    day: 1,
+    day: 2,
     eventType: "Small",
     element: "earth",
     soloPrice: "₹100"
@@ -605,7 +605,7 @@ export const events: Event[] = [
       "Entry fee : 100"
     ],
     category: "Creative Challenges",
-    day: 1,
+    day: 2,
     eventType: "Flagship",
     element: "fire",
     groupPrice: "₹100"
