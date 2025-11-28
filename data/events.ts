@@ -59,7 +59,7 @@ export const events: Event[] = [
   {
     name: "Fashion Show",
     themedName: "Fusion of Tatvas",
-    price: "₹300",
+    price: "₹250",
     description: "The art of expressing emotions and storytelling through thematic attire and presentation.",
     rules: [
       "Each group must consist of a minimum of 5 and a maximum of 12 participants.",
