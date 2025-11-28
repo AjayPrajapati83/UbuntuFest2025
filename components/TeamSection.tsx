@@ -25,7 +25,7 @@ export default function TeamSection() {
     {
       title: 'ACL',
       members: [
-        { name: 'Gaurang Thakur', image: '/team/Gaurang Thakur .jpg' },
+        { name: 'Gaurang Thakur', image: '/team/Gaurang Thakur.jpg' },
         { name: 'Sanskruti Sawant', image: '/team/Sankruti Sawant.jpg' },
       ],
     },
