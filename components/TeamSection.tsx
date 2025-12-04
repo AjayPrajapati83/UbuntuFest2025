@@ -83,11 +83,18 @@ export default function TeamSection() {
       ],
     },
     {
+      title: 'Cultural Head',
+      members: [
+        { name: 'Praveen', image: '/team/Praveen.jpg' },
+      ],
+    },
+    {
       title: 'Special Contributors',
       members: [
         { name: 'Bhavesh Gamare', image: '/team/Bhavesh Gamare.jpg' },
         { name: 'Prathmesh Jadhav', image: '/team/Prathmesh Jadhav.jpg' },
         { name: 'Tanmay Gawankar', image: '/team/Tanmay Gawankar.jpg' },
+        { name: 'Piyush Bhosale', image: '/team/Piyush Bhosale.jpg' },
       ],
     },
   ];
