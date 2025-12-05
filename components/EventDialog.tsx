@@ -242,9 +242,10 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
 
               {/* Footer - Registration Buttons */}
               <div className="p-4 sm:p-5 border-t border-white/10 bg-black/20">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {event.name === 'BGMI' ? (
+                  // Single button for BGMI
                   <a
-                    href={inHouseFormLink}
+                    href="https://forms.gle/rPxuPmcijJixikzTA"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block w-full py-2.5 sm:py-3 px-4 rounded-lg font-semibold text-sm sm:text-base text-center text-white transition-all hover:opacity-90 active:scale-98 touch-manipulation shadow-lg"
@@ -253,23 +254,39 @@ export default function EventDialog({ event, isOpen, onClose }: EventDialogProps
                       WebkitTapHighlightColor: 'transparent',
                     } as React.CSSProperties}
                   >
-                    🎓 In-House Registration (Patkar College only)
+                    🎮 Register for BGMI
                   </a>
+                ) : (
+                  // Two buttons for all other events
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <a
+                      href={inHouseFormLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full py-2.5 sm:py-3 px-4 rounded-lg font-semibold text-sm sm:text-base text-center text-white transition-all hover:opacity-90 active:scale-98 touch-manipulation shadow-lg"
+                      style={{
+                        background: `linear-gradient(135deg, ${elementColor.primary}, ${elementColor.secondary})`,
+                        WebkitTapHighlightColor: 'transparent',
+                      } as React.CSSProperties}
+                    >
+                      🎓 In-House Registration (Patkar College only)
+                    </a>
 
-                  <a
-                    href={outHouseFormLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full py-2.5 sm:py-3 px-4 rounded-lg font-semibold text-sm sm:text-base text-center text-white border-2 transition-all hover:bg-white/5 active:scale-98 touch-manipulation"
-                    style={{
-                      borderColor: elementColor.primary,
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      WebkitTapHighlightColor: 'transparent',
-                    } as React.CSSProperties}
-                  >
-                    🌍 Out-House Registration
-                  </a>
-                </div>
+                    <a
+                      href={outHouseFormLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full py-2.5 sm:py-3 px-4 rounded-lg font-semibold text-sm sm:text-base text-center text-white border-2 transition-all hover:bg-white/5 active:scale-98 touch-manipulation"
+                      style={{
+                        borderColor: elementColor.primary,
+                        background: 'rgba(255, 255, 255, 0.05)',
+                        WebkitTapHighlightColor: 'transparent',
+                      } as React.CSSProperties}
+                    >
+                      🌍 Out-House Registration
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           </div>
