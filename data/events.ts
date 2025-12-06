@@ -26,7 +26,9 @@ export const events: Event[] = [
       "There should not be any potential issues like hate or harassment or provocation. If any participant is found doing so, the team will be disqualified.",
       "Participants should come 30 minutes prior.",
       "Participants should have a strong internet connection.",
-      "The game should be updated."
+      "The game should be updated.",
+      "There is an online qualifier on 9th and 10th of December and offline qualifier on 12th of December.",
+      "16 teams will qualify for the final round on 12th of December."
     ],
     category: "Online Games",
     day: 1,
@@ -63,7 +65,7 @@ export const events: Event[] = [
     description: "The art of expressing emotions and storytelling through thematic attire and presentation.",
     rules: [
       "Each group must consist of a minimum of 5 and a maximum of 12 participants.",
-      "The time limit is 4–7 minutes. Exceeding the limit may result in deduction of points.",
+      "The time limit is 8 to 10 minutes. Exceeding the limit may result in deduction of points.",
       "Participants must visually represent at least two elements from the theme Panchtatva.",
       "Participants must strictly adhere to the theme and dress code.",
       "The judges' decision will be final and binding.",
@@ -88,7 +90,7 @@ export const events: Event[] = [
       "Invest in at least 10 of 15 companies with virtual capital which will be given.",
       "Make buy/avoid decisions based on 15 company news updates (1–2 minutes each).",
       "Final stock prices will determine profits/losses and winner.",
-      "No collaborations or external devices allowed; disqualification if violated."
+      "Other rules will be disclosed on the day of the event."
     ],
     category: "Online Games",
     day: 1,
@@ -103,12 +105,10 @@ export const events: Event[] = [
     description: "A team-based puzzle game where players solve clues and challenges to find a hidden treasure.",
     rules: [
       "Participants will compete in groups of 2 members.",
-      "The treasure hunt is based on the five elements — Prithvi (Earth), Jal (Water), Agni (Fire), Vayu (Air), and Aakash (Space).",
-      "Each clue or task will represent one of these elements, and Every team must complete all five to reach the final treasure.",
       "Arrival – players must arrive 5 minutes prior to the scheduled start time",
-      "Each team will be given a maximum of 20–25 minutes to complete the entire hunt.",
       "The first Team to find the treasure within time wins.",
-      "On the absence at the schedule starting time the team will be considered disqualified."
+      "On the absence at the schedule starting time the team will be considered disqualified.",
+      "Other rules will be disclosed on the day of the event."
     ],
     category: "Creative Challenges",
     day: 2,
@@ -144,13 +144,12 @@ export const events: Event[] = [
       "A group must consist of a minimum of 2 and maximum of 6 participants.",
       "Participants must bring their own music tracks and props required for the performance.",
       "A backup copy of the music track must be carried on a USB drive or phone in case of technical issues.",
-      "The dance performance must align with the theme 'Panchtatva', representing one or more of the five elements — Earth, Water, Fire, Air, or Space.",
+      "Time limit: 4 to 6 minutes. Exceeding the limit may result in deduction of points.",
       "Judging criteria will include: Performance quality, Synchronization, Creativity and originality",
       "Relevance to the theme",
       "Participants must report at least one hour before the event begins.",
       "Latecomers will be penalized.",
-      "Use of dangerous or hazardous props (such as fire, sharp objects, glass, etc.) is strictly prohibited.",
-      "A warning bell will be rung at the 4th minute of the performance to indicate the remaining time."
+      "Use of dangerous or hazardous props (such as fire, sharp objects, glass, etc.) is strictly prohibited."
     ],
     category: "Performing Arts",
     day: 2,
@@ -165,10 +164,8 @@ export const events: Event[] = [
     description: "The art of producing musical sounds with the voice, expressing emotion and melody.",
     rules: [
       "Eligibility: Open to college students and external participants.",
-      "This is a solo event with an entry fee of ₹550.",
       "A warning bell will be rung at the 4th minute of the performance.",
       "Song Selection (Theme – Panchtatva):",
-      "Participants should choose songs inspired by or symbolizing the Five Elements-Earth (folk/nature), Water (flow/calm), Fire (energy/passion), Air (freedom/lightness), or Space (spiritual/peaceful).",
       "Respectful Behaviour: No disruptive behaviour or inappropriate content will be tolerated on stage or backstage.",
       "Background Music: Participants must submit their music tracks a day before the event (via USB or mobile).",
       "Personal instruments are not allowed.",
@@ -189,9 +186,8 @@ export const events: Event[] = [
     rules: [
       "Instrumentalists must bring their own instruments, including any required jacks or cords for connecting mobiles or instruments.",
       "Instrument Categories: Wind, String, and Percussion.",
-      "Participants may perform any raag, chota khyal, bandsh, kayda, tukda, or composition of their choice.",
+      "Participants may perform any raag, chota khyal, bandish, kayda, tukda, or composition of their choice.",
       "Judging will be based solely on performance quality.",
-      "In case of a tie between two or more contestants, an on-the-spot round will be conducted among them.",
       "Participants must arrive at least one hour before the event. Latecomers will face negative marking.",
       "A warning bell will ring at the 3rd minute of the performance to indicate remaining time."
     ],
@@ -207,13 +203,14 @@ export const events: Event[] = [
     price: "₹50",
     description: "A digital design challenge where participants create visually compelling graphics on a given theme.",
     rules: [
-      "Participants have to make a LOGO of any brand or can create a new brand logo on canvas",
+      "Participants have to make a poster on canva",
       "Premium elements of canvas cannot be used",
       "Participants cannot log in their canvas accounts on the pc",
       "Participants must complete within the timeline provided any submission after the timeline would not be considered",
       "Participants cannot use their phone or internet (google) for reference",
       "Changing the computer tabs while the event has started is prohibited",
-      "Use of ready made templates is prohibited"
+      "Use of ready made templates is prohibited",
+      "Topic of the poster will be disclosed on the spot"
     ],
     category: "Fine Arts",
     day: 1,
@@ -269,7 +266,7 @@ export const events: Event[] = [
     price: "₹100",
     description: "A team-based puzzle game where players solve clues and challenges to escape from a themed room within a set time limit.",
     rules: [
-      "Each group will consist of 3 members.",
+      "Each group will consist of 2 members.",
       "Teams will play together, but only one representative from the team will participate in each mini-game.",
       "Participants must respect game materials (props, water, soil, etc.). Damaging them will lead to disqualification.",
       "Once a game begins, no external help is allowed.",
@@ -294,7 +291,8 @@ export const events: Event[] = [
     rules: [
       "The theme for the storyboard will be revealed on the event day.",
       "Storyboard consists maximum of 12 photos.",
-      "Participants must stay on campus throughout the shoot."
+      "Participants must stay on campus throughout the shoot.",
+      "Other rules will be revealed on the event day."
     ],
     category: "Creative Challenges",
     day: 1,
@@ -308,16 +306,12 @@ export const events: Event[] = [
     price: "₹50",
     description: "A solo dance performance where participants express a theme through rhythmic body movements.",
     rules: [
-      "A group must consist of a minimum of 2 and maximum of 6 participants.",
       "Participants must bring their own music tracks and props required for the performance.",
       "A backup copy of the music track must be carried on a USB drive or phone in case of technical issues.",
-      "The dance performance must align with the theme 'Panchtatva', representing one or more of the five elements — Earth, Water, Fire, Air, or Space.",
-      "Judging criteria will include: Performance quality, Synchronization, Creativity and originality",
-      "Relevance to the theme",
+      "Judging criteria will include: Performance quality, Synchronization, Creativity and theme relevance.",
       "Participants must report at least one hour before the event begins.",
       "Latecomers will be penalized.",
-      "Use of dangerous or hazardous props (such as fire, sharp objects, glass, etc.) is strictly prohibited.",
-      "A warning bell will be rung at the 4th minute of the performance to indicate the remaining time."
+      "Use of dangerous or hazardous props (such as fire, sharp objects, glass, etc.) is strictly prohibited."
     ],
     category: "Performing Arts",
     day: 2,
@@ -355,7 +349,8 @@ export const events: Event[] = [
       "Entries can be poetic, narrative, or descriptive but must align with the given prompt.",
       "Use of offensive or inappropriate language will lead to disqualification.",
       "Participants must write individually (no group entries).",
-      "Submissions must be handwritten or typed (as per setup availability)."
+      "Submissions must be handwritten (Pages will be provided).",
+      "Other rules will be disclosed on the spot."
     ],
     category: "Fine Arts",
     day: 2,
@@ -387,15 +382,13 @@ export const events: Event[] = [
     price: "₹50",
     description: "A solo performance where an actor portrays various characters or emotions based on a theme.",
     rules: [
-      "The performance must be based on the chosen theme 'Panchtatva'",
       "Participants must bring their own costumes and props.",
       "Judging criteria will include: CreativityExpression and acting skills, Relevance to the theme",
       "Participants must report one hour before the event. Latecomers will be penalized.",
       "Performance slots will be allotted as per registration order.",
       "Any act containing offensive, vulgar, or community-hurting content will lead to immediate disqualification.",
       "Political statements or references are strictly prohibited.",
-      "After registration, submission of the script is mandatory.",
-      "If the act requires sound effects or background audio, it must be submitted in advance."
+      "After registration, submission of the script is mandatory."
     ],
     category: "Performing Arts",
     day: 1,
@@ -454,7 +447,8 @@ export const events: Event[] = [
       "Poem length: 8–12 lines (short and impactful).",
       "The poem must be original and written on the spot.",
       "Language: English or Hindi.",
-      "Offensive or copied content leads to disqualification."
+      "Offensive or copied content leads to disqualification.",
+      "Other rules will be exlpained on the spot"
     ],
     category: "Fine Arts",
     day: 1,
@@ -496,9 +490,10 @@ export const events: Event[] = [
       "All content (visuals, music, and footage) must be original.",
       "Plagiarized or copyrighted material will lead to disqualification.",
       "Participants are given creative freedom the best video the way they want.",
+      "Reels with the highest views will be the winner.",
       "Steps to Follow:",
       "1. Create piracy free video on given theme and upload it in reel section in Instagram.",
-      "2. you have to do a collaboration @ubuntu.pvc"
+      "2. You have to do a collaboration @ubuntu.pvc and write a suitable caption and post it."
     ],
     category: "Creative Challenges",
     day: 1,
@@ -519,7 +514,6 @@ export const events: Event[] = [
       "Designs must be drawn on the spot within the given time limit.",
       "Participants must bring their own model; however, the model must remain the same throughout the event.",
       "Any inappropriate or offensive design will lead to disqualification.",
-      "Maintain cleanliness in the workspace and respect event decorum.",
       "Participants must report 30 minutes before the event for attendance and setup."
     ],
     category: "Fine Arts",
@@ -538,7 +532,7 @@ export const events: Event[] = [
       "Participants must have a stable internet connection. We are not responsible for any failure to join the event or issues caused by poor connectivity.",
       "All players must report to the classroom at least 15 minutes prior the scheduled start time. Latecomers will be disqualified.",
       "Proper coordination and respectful behaviour with all volunteers is mandatory. Failure to do so will result in disqualification.",
-      "Participants who lose their tickets or coupons will be disqualified."
+      
     ],
     category: "Online Games",
     day: 2,
@@ -552,10 +546,8 @@ export const events: Event[] = [
     price: "₹50",
     description: "A real-time multiplayer strategy game featuring card-based battles and tower defense.",
     rules: [
-      "No use of Evo cards",
       "Each player gets one chance. If they lose, they're out.",
       "Final match i.e. between last two players will be a best of three round which means whichever player between the last Two players wins Two rounds out of Three will be the final winner(1 v 1, mega draft and triple draft battle.",
-      "If in finals game got tied there will be sudden death battle.",
       "Any use of external apps or manipulation is grounds for disqualification.",
       "Players must respect opponents and officials; abusive language or behaviour can lead to a warning or disqualification.",
       "Players must be ready at least 30 minutes before their match. Late arrivals beyond a certain time limit may be disqualified."
@@ -573,11 +565,9 @@ export const events: Event[] = [
     description: "A fast-paced one-on-one football match focusing on individual skills and strategy.",
     rules: [
       "Match duration: 5 minutes.",
-      "If tied, Golden Goal decides the winner.",
+      "If tied, penalty decides the winner.",
       "Coin toss decides initial possession.",
-      "Kick-offs and restarts begin from the centre.",
       "Only goals scored inside the attacking half will be counted.",
-      "After conceding a goal, play restarts from the defender's goal line.",
       "No goalkeeper - players defend their own mini goal.",
       "No sliding tackles; repeated fouls = disqualification.",
       "Ball above knee height is a foul.",
@@ -596,12 +586,13 @@ export const events: Event[] = [
     price: "₹100",
     description: "A strategic team-building event where participants bid for players to create their dream cricket team.",
     rules: [
-      "Each squad must have 10 players:",
-      "10 males",
-      "Teams with fewer than 10 players will be eliminated.",
-      "Bidding time limit: 1 minute per round.",
+      "Each team must have 11 players:",
+      "The teams will be judged based on the points ",
+      "Further information will be provided on the spot.",
+      "Proper coordination and respectful behaviour with all volunteers is mandatory. Failure to do so will result in disqualification.",
+      "Other rules will be provided on the spot.",
       "venue : classroom",
-      "Duo",
+      "Duo event",
       "Entry fee : 100"
     ],
     category: "Creative Challenges",
